@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comprovantePagamento" language="javascript" pageWidth="198" pageHeight="283" columnWidth="158" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f2b1b951-8f5f-4565-93dc-d936c096a9c7">
+	<parameter name="NomeCliente" class="java.lang.String"/>
+	<parameter name="CpfCliente" class="java.lang.String"/>
+	<parameter name="IdVaga" class="java.lang.String"/>
+	<parameter name="ValorPago" class="java.lang.String"/>
+	<parameter name="DataPago" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="160" height="48" uuid="d34088f0-abe1-491d-9702-be4bdb756781"/>
+				<textElement textAlignment="Center">
+					<font fontName="Bauhaus 93" size="20"/>
+				</textElement>
+				<text><![CDATA[Estacione]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="160" height="30" uuid="d897dc3f-4fb4-4896-9fd2-4dab4342df0f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Este recibo não tem validade juridica]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="263a52de-54cd-45d0-b942-11906815180b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="28" width="100" height="20" uuid="34df1421-b83b-42f9-bb18-4a6d71d00cf9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="FixRelativeToBottom" x="16" y="16" width="144" height="16" uuid="2d881e66-7209-4bba-8343-a9e4c0b2bb4b"/>
+				<textFieldExpression><![CDATA[$P{NomeCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="16" y="44" width="144" height="16" uuid="d1fa8bc2-1640-4b58-ad30-5e638925812d"/>
+				<textFieldExpression><![CDATA[$P{CpfCliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="19" uuid="fba8d090-aa40-441e-a41f-a3c68067821a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Identificador da vaga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="19" uuid="dc68fae0-187e-4e0f-93a7-28a1b6ccaf2a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Valor Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="100" height="19" uuid="4e57d904-f87b-441b-a72a-7cc3ea0485af"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Data de Pagamento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="20" y="19" width="140" height="20" uuid="b232e3a1-151b-4966-a774-22ecdcf4f61a"/>
+				<textFieldExpression><![CDATA[$P{IdVaga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="60" width="140" height="20" uuid="60044179-093b-46e7-bfd9-772805acf423"/>
+				<textFieldExpression><![CDATA[$P{ValorPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="100" width="140" height="20" uuid="3c18df10-a4c9-45e6-9113-afed685bc5fc"/>
+				<textFieldExpression><![CDATA[$P{DataPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="159" height="22" uuid="869adbcd-8410-4d25-9b7a-6472587e5457"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Bauhaus 93" size="14"/>
+				</textElement>
+				<text><![CDATA[Estacione]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

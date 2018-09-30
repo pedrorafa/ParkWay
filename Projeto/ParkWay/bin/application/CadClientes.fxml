@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+prefHeight="460.0" prefWidth="640.0"
+xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+ fx:controller="controllers.CadClientesCtrl">
+   <children>
+      <Button layoutX="546.0" layoutY="421.0" mnemonicParsing="false" onAction="#ShowCadVeiculo" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
+      <TableView layoutX="11.0" layoutY="91.0" prefHeight="322.0" prefWidth="616.0">
+         <columns>
+            <TableColumn prefWidth="328.0" text="Proprietário" />
+            <TableColumn prefWidth="246.0" text="CPF" />
+         </columns></TableView>
+      <Button layoutX="526.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#ShowCadVeiculo" prefHeight="36.0" prefWidth="100.0" text="Pesquisar" />
+      <TextField layoutX="305.0" layoutY="23.0" prefHeight="25.0" prefWidth="142.0" />
+      <TextField layoutX="11.0" layoutY="23.0" prefHeight="25.0" prefWidth="281.0" />
+      <Label layoutX="11.0" layoutY="6.0" text="Proprietário" />
+      <Label layoutX="305.0" layoutY="6.0" text="CPF" />
+      <Button layoutX="11.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#ShowCadVeiculo" prefHeight="25.0" prefWidth="100.0" text="Adicionar" />
+   </children>
+</AnchorPane>

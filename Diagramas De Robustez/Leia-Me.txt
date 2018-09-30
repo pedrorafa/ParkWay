@@ -1,0 +1,6 @@
+Plataforma gráfica utilizada Draw.io
+
+Acesso a plataforma online pelo link:
+https://www.draw.io/
+
+Para importação dos diagramas, basta arrastar o arquivo xml para um diagrama em branco na aplicação.
