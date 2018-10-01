@@ -1,0 +1,39 @@
+;Nome do Campo;Orgm Dado;Tipo;Dflt;M scara edi‡Æo;Null?;Tam;Consistˆncia
+1;Propriet rio;Digitado;String;;;N;30;
+2;CPF;Digitado;String;;000.000.000-00;N;11;Valida‡Æo de CPF
+3;Adicionar;;Btn;;;;;
+4;Pesquisar;;Btn;;;;;
+5;Propriet rio;CRUD;List;;;N;30;
+6;CPF;CRUD;List;;000.000.000-00;N;11;Valida‡Æo de CPF
+7;Salvar;;;;;;;
+;;;;;;;;
+8;N§ da Vaga;Digitado;String;;;N;2;Vaga deve existir no BD
+9;Ve¡culo;ComboBox;List;;;N;30;
+10;Propriet rio;ComboBox;List;;;N;30;
+11;Pesquisar;;Btn;;;;;
+12;Adicionar;;Btn;;;;;
+13;Vaga;CRUD;List;;;N;2;
+14;Propriet rio;CRUD;List;;;N;30;
+15;Ve¡culo;CRUD;List;;;N;30;
+16;Salvar;;Btn;;;;;
+;;;;;;;;
+17;Cliente;CRUD;String;;;N;30;
+18;CPF;CRUD;String;;000.000.000-00;N;11;
+19;Data de Pagamento;CRUD;String;;00/00/0000;N;8;
+20;Valor;CRUD;String;;R$ 0,00;N;6;
+21;N§ do Comprovante;CRUD;String;;;N;2;
+22;Imprimir Comprovante;;bnt;;;;;
+;;;;;;;;
+20;Placa;Digitado;String;;;S;7;Placa cadastrada
+21;Modelo;Digitado;String;;;S;30;
+22;Cor;ComboBox;List;;;S;10;
+23;N§ da Vaga;Digitado;String;;;S;2;Vaga deve existir no BD
+24;Propriet rio;Digitado;String;;;S;30;Propiet rio cadastrado
+25;Situa‡Æo;ComboBox;List;;;S;1;
+26;Pesquisar;;Btn;;;;;
+27;Propriet rio;CRUD;String;;;N;30;
+28;Ve¡culo;CRUD;String;;;N;30;
+29;Vaga;CRUD;String;;;N;2;
+30;Situa‡Æo;CRUD;String;;;N;1;
+31;Data;CRUD;String;;00/00/0000;S;8;
+32;Salvar;;Btn;;;;;

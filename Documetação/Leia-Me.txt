@@ -1,0 +1,11 @@
+Essa documentação foi feita para o projeto acadêmico de 
+Engenharia de Software da turma de EC-6 do 2º semestre de 2018.
+
+Tem como objetivo realizar todo o processo da analise de desenvolvimento de um software, 
+neste caso um software para auxiliar no controle e administração de um estacionamento.
+
+Tem como autores os alunos:
+
+Marcos Abilio 		RA:082150411
+Jorge Henrique		RA:081160031
+Pedro Rafael		RA:082150246
