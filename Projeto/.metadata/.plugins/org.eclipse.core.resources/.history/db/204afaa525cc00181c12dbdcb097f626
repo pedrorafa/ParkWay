@@ -1,0 +1,83 @@
+package data.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+
+import data.Util.DbUtil;
+import data.VO.Cliente;
+import data.VO.Vaga;
+
+public class VagaRepo {
+	private Connection connection;
+
+	public VagaRepo() {
+		connection = DbUtil.getConnection();
+	}
+
+	public void add(Vaga p) {
+
+		try {
+
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"INSERT INTO TBVAGA " + "(NUMERO, TAMANHO, POSX, POSY, POSZ)"
+							+ " VALUES (?,?,?,?,?)");
+
+			preparedStatement.setString(1, p.getNumero());
+			preparedStatement.setInt(2, p.getTamanho());
+			preparedStatement.setInt(3, p.getPosX());
+			preparedStatement.setInt(4, p.getPosY());
+			preparedStatement.setInt(5, p.getPosZ());
+
+			preparedStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	} // addPeople
+
+	public void update(Vaga p) {
+		try {
+
+			PreparedStatement preparedStatement = connection.prepareStatement("UPDATE TBVAGA SET "
+					+ "NUMERO = ?, TAMANHO = ?, POSX = ?, POSY = ?, POSZ = ?"
+					+ "where ID = ?");
+
+			preparedStatement.setString(1, p.getNumero());
+			preparedStatement.setInt(2, p.getTamanho());
+			preparedStatement.setInt(3, p.getPosX());
+			preparedStatement.setInt(4, p.getPosY());
+			preparedStatement.setInt(5, p.getPosZ());
+			
+			preparedStatement.setInt(6, p.getId());
+
+			preparedStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void del(Vaga p) {
+		try {
+
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM TBVAGA WHERE ID = ?");
+
+			preparedStatement.setInt(1, p.getId());
+
+			preparedStatement.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Vaga getPeople(Vaga p) {
+		return new Vaga(); // TODO: Work on it
+	}
+
+	public ArrayList<Vaga> listPeople(Vaga p) {
+		return new ArrayList<Vaga>(); // TODO: Work on it
+	}
+}

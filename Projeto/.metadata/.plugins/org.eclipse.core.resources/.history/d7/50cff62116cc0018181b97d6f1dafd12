@@ -1,0 +1,5 @@
+package data.VO;
+
+public class Endereco {
+
+}

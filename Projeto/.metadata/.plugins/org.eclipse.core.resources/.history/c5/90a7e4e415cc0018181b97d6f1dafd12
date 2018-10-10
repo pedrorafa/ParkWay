@@ -1,0 +1,42 @@
+package data.VO;
+
+import java.time.LocalDate;
+
+public class Vaga {
+	int IdVeiculo;
+	int IdVaga;
+	LocalDate DataInicio;
+	LocalDate DataFim;
+	boolean IsActive;
+	
+	public int getIdVeiculo() {
+		return IdVeiculo;
+	}
+	public void setIdVeiculo(int idVeiculo) {
+		IdVeiculo = idVeiculo;
+	}
+	public int getIdVaga() {
+		return IdVaga;
+	}
+	public void setIdVaga(int idVaga) {
+		IdVaga = idVaga;
+	}
+	public LocalDate getDataInicio() {
+		return DataInicio;
+	}
+	public void setDataInicio(LocalDate dataInicio) {
+		DataInicio = dataInicio;
+	}
+	public LocalDate getDataFim() {
+		return DataFim;
+	}
+	public void setDataFim(LocalDate dataFim) {
+		DataFim = dataFim;
+	}
+	public boolean isIsActive() {
+		return IsActive;
+	}
+	public void setIsActive(boolean isActive) {
+		IsActive = isActive;
+	}
+}

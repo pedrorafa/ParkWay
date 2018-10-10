@@ -1,0 +1,28 @@
+package data.VO;
+
+import java.time.LocalDate;
+
+public class Vaga {
+	int Id;
+	String Numero;
+	int Tamanho;
+	
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public String getNumero() {
+		return Numero;
+	}
+	public void setNumero(String numero) {
+		Numero = numero;
+	}
+	public int getTamanho() {
+		return Tamanho;
+	}
+	public void setTamanho(int tamanho) {
+		Tamanho = tamanho;
+	}
+}

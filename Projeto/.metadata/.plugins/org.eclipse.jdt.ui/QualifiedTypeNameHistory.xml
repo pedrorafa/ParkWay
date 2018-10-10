@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="data.Validation.CPF"/>
+    <fullyQualifiedTypeName name="java.awt.Point"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="data.Util.DbUtil"/>
+    <fullyQualifiedTypeName name="data.VO.Cliente"/>
+    <fullyQualifiedTypeName name="data.VO.Vaga"/>
+    <fullyQualifiedTypeName name="data.VO.Veiculo"/>
+    <fullyQualifiedTypeName name="data.VO.Pagamento"/>
+    <fullyQualifiedTypeName name="data.VO.HistVaga"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+</qualifiedTypeNameHistroy>
