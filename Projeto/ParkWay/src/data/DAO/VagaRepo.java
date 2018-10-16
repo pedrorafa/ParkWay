@@ -2,10 +2,13 @@ package data.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import data.Util.DbUtil;
 import data.VO.Vaga;
+import data.VO.Veiculo;
 
 public class VagaRepo {
 	private Connection connection;
@@ -80,11 +83,64 @@ public class VagaRepo {
 		}
 	}
 
-	public Vaga getPeople(Vaga p) {
-		return new Vaga(); // TODO: Work on it
+	public Vaga get(Vaga p) throws SQLException {
+		
+		PreparedStatement stmt = connection.prepareStatement(
+				"select * from "
+				+ "TBVAGA Where Id = ?");
+		ResultSet rs = (ResultSet) stmt.executeQuery();		
+		
+		Vaga item = null;
+		
+		try {
+			
+			if (rs.next()) {
+				item = new Vaga();
+				item.setId(rs.getInt(""));
+			}	
+			
+		} catch (Exception e) {			
+			
+			e.printStackTrace();
+			return null;
+			
+		}finally{
+			
+			rs.close();
+			stmt.close();
+			
+		}
+
+		return item;
 	}
 
-	public ArrayList<Vaga> listPeople(Vaga p) {
-		return new ArrayList<Vaga>(); // TODO: Work on it
+	public ArrayList<Vaga> list(Vaga p) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement("select * from TBVAGA");
+		ResultSet rs = (ResultSet) stmt.executeQuery();
+		
+		ArrayList<Vaga> list = new ArrayList<Vaga>();
+
+		try {
+			
+			if (rs.next()) {
+				Vaga item = new Vaga();
+				item.setId(rs.getInt(""));
+				
+				list.add(item);
+			}	
+			
+		} catch (Exception e) {			
+			
+			e.printStackTrace();
+			return null;
+			
+		}finally{
+			
+			rs.close();
+			stmt.close();
+			
+		}
+		
+		return list;
 	}
 }

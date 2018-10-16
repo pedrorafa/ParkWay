@@ -2,10 +2,13 @@ package data.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import data.Util.DbUtil;
 import data.VO.HistVaga;
+import data.VO.Pagamento;
 
 public class HistVagaRepo {
 	private Connection connection;
@@ -77,11 +80,65 @@ public class HistVagaRepo {
 		}
 	}
 
-	public HistVaga get(HistVaga p) {
-		return new HistVaga(); // TODO: Work on it
+	public HistVaga get(HistVaga p) throws SQLException {
+
+		PreparedStatement stmt = connection.prepareStatement(
+				"select * from TBHISTVAGA"
+				+ " WHERE IdVeiculo = ? AND IdVaga = ?");
+		ResultSet rs = (ResultSet) stmt.executeQuery();
+
+		HistVaga item = null;
+
+		try {
+
+			if (rs.next()) {
+				item = new HistVaga();
+				item.setIdVaga(rs.getInt(""));
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return null;
+
+		} finally {
+
+			rs.close();
+			stmt.close();
+
+		}
+
+		return item;
 	}
 
-	public ArrayList<HistVaga> list(HistVaga p) {
-		return new ArrayList<HistVaga>(); // TODO: Work on it
+	public ArrayList<HistVaga> list(HistVaga p) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(
+				"select * from TBHISTVAGA");
+		ResultSet rs = (ResultSet) stmt.executeQuery();
+
+		ArrayList<HistVaga> list = new ArrayList<HistVaga>();
+
+		try {
+
+			if (rs.next()) {
+				HistVaga item = new HistVaga();
+				item.setIdVaga(rs.getInt(""));
+
+				list.add(item);
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return null;
+
+		} finally {
+
+			rs.close();
+			stmt.close();
+
+		}
+
+		return list;
 	}
 }

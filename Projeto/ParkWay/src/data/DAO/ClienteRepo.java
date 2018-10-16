@@ -2,10 +2,13 @@ package data.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import data.Util.DbUtil;
 import data.VO.Cliente;
+import data.VO.HistVaga;
 
 public class ClienteRepo {
 	private Connection connection;
@@ -85,11 +88,65 @@ public class ClienteRepo {
 		}
 	}
 
-	public Cliente get(Cliente p) {
-		return new Cliente(); // TODO: Work on it
+	public Cliente get(Cliente p) throws SQLException {
+
+		PreparedStatement stmt = connection.prepareStatement(
+				"select * from TBCLIENTE "
+				+ "WHERE CPF = ?");
+		ResultSet rs = (ResultSet) stmt.executeQuery();
+
+		Cliente item = null;
+
+		try {
+
+			if (rs.next()) {
+				item = new Cliente();
+				item.setCPF(rs.getString(""));
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return null;
+
+		} finally {
+
+			rs.close();
+			stmt.close();
+
+		}
+
+		return item;
 	}
 
-	public ArrayList<Cliente> list(Cliente p) {
-		return new ArrayList<Cliente>(); // TODO: Work on it
+	public ArrayList<Cliente> list(Cliente p) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(
+				"select * from TBCLIENTE");
+		ResultSet rs = (ResultSet) stmt.executeQuery();
+
+		ArrayList<Cliente> list = new ArrayList<Cliente>();
+
+		try {
+
+			if (rs.next()) {
+				Cliente item = new Cliente();
+				item.setCPF(rs.getString(""));
+
+				list.add(item);
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return null;
+
+		} finally {
+
+			rs.close();
+			stmt.close();
+
+		}
+
+		return list;
 	}
 }
