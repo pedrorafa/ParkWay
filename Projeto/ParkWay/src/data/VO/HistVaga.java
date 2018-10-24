@@ -2,6 +2,8 @@ package data.VO;
 
 import java.sql.Date;
 
+//TODO Include horario da reserva
+
 public class HistVaga {
 	int IdVeiculo;
 	int IdVaga;

@@ -2,6 +2,8 @@ package data.VO;
 
 import java.sql.Date;
 
+//TODO include boolean IsOcupada
+
 public class Vaga {
 	int Id;
 	String Numero;

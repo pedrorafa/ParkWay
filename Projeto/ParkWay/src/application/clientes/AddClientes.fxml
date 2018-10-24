@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddClientesCtrl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.clientes.AddClientesCtrl">
    <children>
       <Button layoutX="536.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
       <Button layoutX="526.0" layoutY="30.0" mnemonicParsing="false"  prefHeight="36.0" prefWidth="100.0" text="Pesquisar" />
@@ -14,7 +14,7 @@
       <Label layoutX="357.0" layoutY="6.0" text="CPF" />
       <Label layoutX="14.0" layoutY="54.0" text="CEP" />
       <TextField layoutX="14.0" layoutY="71.0" prefHeight="25.0" prefWidth="131.0" />
-      <Button layoutX="152.0" layoutY="71.0" mnemonicParsing="false" onAction="" prefHeight="25.0" prefWidth="115.0" text="Buscar Endereço" />
+      <Button layoutX="152.0" layoutY="71.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Buscar Endereço" />
       <TextField layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="389.0" />
       <Label layoutX="14.0" layoutY="101.0" text="Logradouro" />
       <ChoiceBox layoutX="287.0" layoutY="75.0" prefHeight="25.0" prefWidth="50.0" />
