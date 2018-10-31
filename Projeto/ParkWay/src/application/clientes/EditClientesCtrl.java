@@ -10,9 +10,8 @@ public class EditClientesCtrl {
     @FXML
     private AnchorPane childPane;
 
-	public void SalvarCliente() throws IOException{
-        AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("./ShowVeiculos.fxml"));
-        childPane.getChildren().setAll(pnlOne);
+	public void Salvar() throws IOException{
+
 	}
 	public static void main(String[] args) {
 	}

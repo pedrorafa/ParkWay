@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import data.Util.DbUtil;
 import data.VO.Cliente;
+import data.VO.Endereco;
 import data.VO.HistVaga;
 
 public class ClienteRepo {
@@ -27,8 +28,8 @@ public class ClienteRepo {
 							"(CPF, Nome, numero , logradouro, estado, cidade, bairro, CEP)"
 							+ " VALUES (?,?,?,?,?,?,?,?)");
 
-			preparedStatement.setString(1, p.getCPF());
-			preparedStatement.setString(2, p.getNome());
+			preparedStatement.setString(1, p.getCPF().get());
+			preparedStatement.setString(2, p.getNome().get());
 			preparedStatement.setString(3, p.getEndereco().getNumero());
 			preparedStatement.setString(4, p.getEndereco().getLogradouro());
 			preparedStatement.setString(5, p.getEndereco().getEstado());
@@ -42,7 +43,7 @@ public class ClienteRepo {
 			e.printStackTrace();
 		}
 
-	} // addPeople
+	} // add
 
 	public void update(Cliente p) {
 		try {
@@ -54,7 +55,7 @@ public class ClienteRepo {
 					+ "tipodelogradouro = ?, logradouro = ?, estado = ?, cidade = ?, bairro = ?, CEP = ? "
 					+ "where CPF = ?");
 
-			preparedStatement.setString(1, p.getNome());
+			preparedStatement.setString(1, p.getNome().get());
 			preparedStatement.setString(2, p.getEndereco().getNumero());
 			preparedStatement.setString(3, p.getEndereco().getLogradouro());
 			preparedStatement.setString(4, p.getEndereco().getEstado());
@@ -62,7 +63,7 @@ public class ClienteRepo {
 			preparedStatement.setString(6, p.getEndereco().getBairro());
 			preparedStatement.setString(7, p.getEndereco().getCep());
 
-			preparedStatement.setString(8, p.getCPF());
+			preparedStatement.setString(8, p.getCPF().get());
 
 			preparedStatement.execute();
 
@@ -79,7 +80,7 @@ public class ClienteRepo {
 					"DELETE FROM TBCLIENTE WHERE CPF = ?"
 					);
 
-			preparedStatement.setString(1, p.getCPF());
+			preparedStatement.setString(1, p.getCPF().get());
 
 			preparedStatement.execute();
 
@@ -120,14 +121,20 @@ public class ClienteRepo {
 	}
 
 	public ArrayList<Cliente> list(Cliente p) throws SQLException {
+		ArrayList<Cliente> lista = new ArrayList<Cliente>();
+		
+		Cliente teste = new Cliente();
+		teste.setCPF("teste");
+		teste.setNome("teste");
+		teste.setEndereco(new Endereco());		
+		
 		PreparedStatement stmt = connection.prepareStatement(
 				"select * from TBCLIENTE");
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		ArrayList<Cliente> list = new ArrayList<Cliente>();
 
-		try {
-
+		try {			
 			if (rs.next()) {
 				Cliente item = new Cliente();
 				item.setCPF(rs.getString(""));

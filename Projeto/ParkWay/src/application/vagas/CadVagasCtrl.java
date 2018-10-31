@@ -12,7 +12,7 @@ public class CadVagasCtrl {
     @FXML
     private AnchorPane childPane;
 
-	public void ShowAddCliente() throws IOException{
+	public void ShowAdd() throws IOException{
         AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("AddClientes.fxml"));
 		Scene scene = new Scene(pnlOne);
 		

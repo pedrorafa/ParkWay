@@ -1,7 +1,0 @@
-package data.Validation;
-
-public class CPF {
-	public boolean ValidarCpf(String Cpf){
-		return Cpf.trim() != "";
-	}
-}

@@ -10,7 +10,7 @@ public class AddVagasCtrl {
     @FXML
     private AnchorPane childPane;
 
-	public void SalvarCliente() throws IOException{
+	public void Salvar() throws IOException{
         AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("./ShowVeiculos.fxml"));
         childPane.getChildren().setAll(pnlOne);
 	}
