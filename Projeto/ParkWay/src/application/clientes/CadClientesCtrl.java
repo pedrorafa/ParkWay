@@ -1,6 +1,7 @@
 package application.clientes;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,17 +22,24 @@ import data.DAO.ClienteRepo;
 import data.VO.Cliente;
 import data.VO.Endereco;
 
-public class CadClientesCtrl {
+public class CadClientesCtrl implements Initializable  {
     @FXML
     private AnchorPane childPane;
 
     private List<Cliente> lista = new ArrayList<Cliente>();
     
+    @FXML
     private TableView<Cliente> tabela;
     @FXML
     private TableColumn<Cliente, String> colCpf;
     @FXML
     private TableColumn<Cliente, String> colNome;
+    @FXML
+    private TableColumn colEdit;
+    @FXML
+    private TableColumn colDelete;
+    
+    
 
     
 	public void ShowAdd() throws IOException{
@@ -61,10 +70,10 @@ public class CadClientesCtrl {
 		}
 	}
 	
-    public void initialize() {
-		colCpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("cpf"));
-		colNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("nome"));
-		
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		colCpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Cpf"));
+		colNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
+				
 		Cliente teste = new Cliente();
 		
 		teste.setCPF("teste");
@@ -73,15 +82,7 @@ public class CadClientesCtrl {
 		
 		lista.add(teste);
 		
-	    final ObservableList<Cliente> data =
-	            FXCollections.observableArrayList(lista);
-		
-		tabela.getItems().addAll(lista);
-		
-		for(Cliente i: lista) {
-			data.add(i);
-		}		
-    }
-	public static void main(String[] args) {
+	    ObservableList<Cliente> data = FXCollections.observableArrayList(lista);		
+		tabela.setItems(data);		
 	}
 }

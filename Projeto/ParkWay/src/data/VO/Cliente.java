@@ -8,11 +8,16 @@ public class Cliente {
 	SimpleStringProperty  Nome;
 	Endereco Endereco;
 	
+	public Cliente() {
+		Cpf = new SimpleStringProperty();
+		Nome = new SimpleStringProperty();
+	}
+	
 	public SimpleStringProperty  getCPF() {
 		return Cpf;
 	}
 	public void setCPF(String cpf) {
-		if(!CPF.ValidarCpf(cpf))
+		if(CPF.ValidarCpf(cpf))
 			Cpf.set(cpf);
 	}
 	public SimpleStringProperty  getNome() {
