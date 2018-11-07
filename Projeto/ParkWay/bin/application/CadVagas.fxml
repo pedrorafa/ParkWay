@@ -8,7 +8,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CadVagasCtrl">
    <children>
       <Button layoutX="546.0" layoutY="421.0" mnemonicParsing="false" onAction="#ShowCadVeiculo" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
-      <TableView layoutX="11.0" layoutY="84.0" prefHeight="329.0" prefWidth="616.0">
+      <TableView fx:id="tabela" layoutX="11.0" layoutY="84.0" prefHeight="329.0" prefWidth="616.0">
          <columns>
             <TableColumn prefWidth="91.0" text="Vaga" />
             <TableColumn prefWidth="213.0" text="Proprietário" />

@@ -29,7 +29,7 @@ public class ClienteRepo {
 							+ " VALUES (?,?,?,?,?,?,?,?)");
 
 			preparedStatement.setString(1, p.getCPF().get());
-			preparedStatement.setString(2, p.getNome().get());
+			preparedStatement.setString(2, p.getNome());
 			preparedStatement.setString(3, p.getEndereco().getNumero());
 			preparedStatement.setString(4, p.getEndereco().getLogradouro());
 			preparedStatement.setString(5, p.getEndereco().getEstado());
@@ -55,7 +55,7 @@ public class ClienteRepo {
 					+ "tipodelogradouro = ?, logradouro = ?, estado = ?, cidade = ?, bairro = ?, CEP = ? "
 					+ "where CPF = ?");
 
-			preparedStatement.setString(1, p.getNome().get());
+			preparedStatement.setString(1, p.getNome());
 			preparedStatement.setString(2, p.getEndereco().getNumero());
 			preparedStatement.setString(3, p.getEndereco().getLogradouro());
 			preparedStatement.setString(4, p.getEndereco().getEstado());
@@ -124,11 +124,21 @@ public class ClienteRepo {
 		ArrayList<Cliente> lista = new ArrayList<Cliente>();
 		
 		Cliente teste = new Cliente();
-		teste.setCPF("teste");
-		teste.setNome("teste");
-		teste.setEndereco(new Endereco());		
+		teste.setCPF("funcionou");
+		teste.setNome("carai");
+		teste.setEndereco(new Endereco());	
 		
-		PreparedStatement stmt = connection.prepareStatement(
+		Cliente teste1 = new Cliente();
+		teste1.setCPF("funcionou2");
+		teste1.setNome("carai2");
+		teste1.setEndereco(new Endereco());	
+		
+		lista.add(teste);
+		lista.add(teste1);
+		
+		return lista;
+		
+		/*PreparedStatement stmt = connection.prepareStatement(
 				"select * from TBCLIENTE");
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
@@ -154,6 +164,6 @@ public class ClienteRepo {
 
 		}
 
-		return list;
+		return list;*/
 	}
 }

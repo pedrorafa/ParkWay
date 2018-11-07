@@ -5,12 +5,12 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Cliente {
 	SimpleStringProperty  Cpf;
-	SimpleStringProperty  Nome;
+	String  Nome;
 	Endereco Endereco;
 	
 	public Cliente() {
-		Cpf = new SimpleStringProperty();
-		Nome = new SimpleStringProperty();
+		Cpf = new SimpleStringProperty("<Cpf>");
+		//Nome = new SimpleStringProperty("<Nome>");
 	}
 	
 	public SimpleStringProperty  getCPF() {
@@ -20,11 +20,11 @@ public class Cliente {
 		if(CPF.ValidarCpf(cpf))
 			Cpf.set(cpf);
 	}
-	public SimpleStringProperty  getNome() {
+	public String  getNome() {
 		return Nome;
 	}
 	public void setNome(String nome) {
-		Nome.set(nome);
+		Nome = nome;
 	}
 	public Endereco getEndereco() {
 		return Endereco;

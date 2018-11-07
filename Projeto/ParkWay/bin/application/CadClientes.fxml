@@ -6,13 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.clientes.CadClientesCtrl">
    <children>
-      <TableView layoutX="11.0" layoutY="153.0" prefHeight="299.0" prefWidth="616.0">
-         <columns>
-            <TableColumn fx:id="colNome" prefWidth="395.0" text="Nome" />
-            <TableColumn fx:id="colCpf" prefWidth="167.0" text="CPF" />
-            <TableColumn fx:id="colEdit" prefWidth="26.0" />
-            <TableColumn fx:id="colDelete" prefWidth="44.0" />
-         </columns></TableView>
+      <TableView fx:id="tabela" layoutX="11.0" layoutY="153.0" prefHeight="299.0" prefWidth="616.0" />
       <Button layoutX="526.0" layoutY="23.0" mnemonicParsing="false" onAction="#Pesquisar" prefHeight="25.0" prefWidth="100.0" text="Pesquisar" />
       <TextField layoutX="357.0" layoutY="23.0" prefHeight="25.0" prefWidth="158.0" />
       <TextField layoutX="11.0" layoutY="23.0" prefHeight="25.0" prefWidth="335.0" />
