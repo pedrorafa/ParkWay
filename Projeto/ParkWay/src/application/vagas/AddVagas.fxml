@@ -6,14 +6,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.clientes.AddClientesCtrl">
    <children>
-      <Button layoutX="546.0" layoutY="90.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
-      <DatePicker layoutX="432.0" layoutY="50.0" prefHeight="25.0" prefWidth="194.0" />
-      <Label layoutX="344.0" layoutY="54.0" text="Dt. Pagamento" />
-      <TextField layoutX="84.0" layoutY="14.0" prefHeight="25.0" prefWidth="80.0" />
-      <Label layoutX="14.0" layoutY="18.0" text="Nº da Vaga" />
-      <ChoiceBox layoutX="84.0" layoutY="50.0" prefHeight="25.0" prefWidth="254.0" />
-      <ChoiceBox layoutX="225.0" layoutY="14.0" prefHeight="25.0" prefWidth="404.0" />
-      <Label layoutX="14.0" layoutY="54.0" text="Proprietário" />
-      <Label layoutX="174.0" layoutY="18.0" text="Veículo" />
+      <Label layoutX="13.0" layoutY="16.0" text="Nº da Vaga" />
+      <TextField fx:id="txtVaga" layoutX="83.0" layoutY="12.0" prefHeight="25.0" prefWidth="80.0" />
+      <Button layoutX="545.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
+      <TextField fx:id="txtTamanho" layoutX="228.0" layoutY="12.0" prefHeight="25.0" prefWidth="80.0" />
+      <Label layoutX="170.0" layoutY="16.0" text="Tamanho" />
    </children>
 </AnchorPane>

@@ -1,19 +1,38 @@
 package application.veiculos;
 
-import java.io.IOException;
-
+import data.DAO.VeiculoRepo;
+import data.VO.Cliente;
+import data.VO.Veiculo;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class AddVeiculosCtrl {
-    @FXML
-    private AnchorPane childPane;
+	public  Veiculo dados;
+	
+	@FXML
+	private TextField txtPlaca;
+	@FXML
+	private TextField txtModelo;
+	@FXML
+	private ChoiceBox<String> cbCor;
+	@FXML
+	private ChoiceBox<Cliente> cbCliente;
 
-	public void Salvar() throws IOException{
-        AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("./ShowVeiculos.fxml"));
-        childPane.getChildren().setAll(pnlOne);
-	}
-	public static void main(String[] args) {
+	public void Salvar(){
+		VeiculoRepo repo = new VeiculoRepo();
+		
+		Veiculo p = new Veiculo();
+		
+		p.setIdCliente(cbCliente.getSelectionModel().getSelectedItem().getCpf());
+		p.setIdCor(cbCor.getSelectionModel().getSelectedIndex());
+		p.setModelo(txtModelo.getText());
+		p.setPlaca(txtPlaca.getText());
+		
+		repo.update(p);
+		
+		Stage tmp = (Stage)txtPlaca.getScene().getWindow();
+		tmp.close();
 	}
 }

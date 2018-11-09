@@ -1,19 +1,51 @@
 package application.vagas;
 
-import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
+import data.DAO.ClienteRepo;
+import data.DAO.VagaRepo;
+import data.DAO.VeiculoRepo;
+import data.VO.Cliente;
+import data.VO.Endereco;
+import data.VO.Vaga;
+import data.VO.Veiculo;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-public class EditVagasCtrl {
-    @FXML
-    private AnchorPane childPane;
+public class EditVagasCtrl implements Initializable {
+	public  Vaga dados;
+	
+	@FXML
+	private TextField txtNumero;
+	@FXML
+	private TextField txtTamanho;
 
-	public void Salvar() throws IOException{
-        AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("./ShowVeiculos.fxml"));
-        childPane.getChildren().setAll(pnlOne);
+
+	public void Salvar(){
+		VagaRepo repo = new VagaRepo();
+		
+		Vaga p = new Vaga();
+		
+		p.setNumero(txtNumero.getText());
+		p.setTamanho(Integer.valueOf(txtTamanho.getText()));
+		
+		repo.update(p);
+		
+		Stage tmp = (Stage)txtNumero.getScene().getWindow();
+		tmp.close();
 	}
-	public static void main(String[] args) {
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {		
+		txtNumero.setText(dados.getNumero());
+		txtTamanho.setText(String.valueOf(dados.getTamanho()));
 	}
 }

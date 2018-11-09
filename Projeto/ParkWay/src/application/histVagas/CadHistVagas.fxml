@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.histVagas.CadHistVagasCtrl">
+   <children>
+      <TableView fx:id="tabela" layoutX="11.0" layoutY="103.0" prefHeight="343.0" prefWidth="616.0">
+         <columns>
+            <TableColumn prefWidth="189.0" text="Proprietário" />
+            <TableColumn prefWidth="148.0" text="Veiculo" />
+            <TableColumn prefWidth="73.0" text="Vaga" />
+            <TableColumn prefWidth="124.0" text="Situação" />
+            <TableColumn prefWidth="81.0" text="-" />
+         </columns></TableView>
+      <TextField fx:id="txtModelo" layoutX="142.0" layoutY="22.0" prefHeight="25.0" prefWidth="248.0" />
+      <TextField fx:id="txtPlaca" layoutX="14.0" layoutY="22.0" prefHeight="25.0" prefWidth="122.0" />
+      <Label layoutX="14.0" layoutY="5.0" text="Placa" />
+      <Label layoutX="142.0" layoutY="5.0" text="Modelo" />
+      <Label layoutX="91.0" layoutY="51.0" text="Nome do Proprietário" />
+      <TextField fx:id="txtNome" layoutX="91.0" layoutY="69.0" prefHeight="25.0" prefWidth="301.0" />
+      <Label layoutX="14.0" layoutY="51.0" text="Nº da Vaga" />
+      <TextField fx:id="txtNumero" layoutX="14.0" layoutY="69.0" prefHeight="25.0" prefWidth="70.0" />
+      <ChoiceBox fx:id="cbCor" layoutX="403.0" layoutY="22.0" prefHeight="25.0" prefWidth="100.0" />
+      <Label layoutX="405.0" layoutY="5.0" text="Cor" />
+      <Label layoutX="405.0" layoutY="51.0" text="Situação" />
+      <ChoiceBox fx:id="cbSituacao" layoutX="405.0" layoutY="69.0" prefHeight="25.0" prefWidth="100.0" />
+      <Button layoutX="520.0" layoutY="22.0" mnemonicParsing="false" onAction="#Pesquisar" prefHeight="25.0" prefWidth="100.0" text="Pesquisar" />
+      <Button layoutX="520.0" layoutY="69.0" mnemonicParsing="false" onAction="#ShowAdd" prefHeight="25.0" prefWidth="100.0" text="Adicionar" />
+   </children>
+</AnchorPane>

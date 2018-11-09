@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import data.Util.DbUtil;
 import data.VO.Cliente;
 import data.VO.Endereco;
@@ -23,24 +25,22 @@ public class ClienteRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbCliente_I ?,?,?,?,?,?,?,?"+
-					"INSERT INTO TBCLIENTE " + 
-							"(CPF, Nome, numero , logradouro, estado, cidade, bairro, CEP)"
-							+ " VALUES (?,?,?,?,?,?,?,?)");
+					"exec sp_tbCliente_tbEndereco_I ?,?,?,?,?,?,?,?");
 
-			preparedStatement.setString(1, p.getCPF().get());
+			preparedStatement.setString(1, p.getCpf());
 			preparedStatement.setString(2, p.getNome());
 			preparedStatement.setString(3, p.getEndereco().getNumero());
 			preparedStatement.setString(4, p.getEndereco().getLogradouro());
 			preparedStatement.setString(5, p.getEndereco().getEstado());
 			preparedStatement.setString(6, p.getEndereco().getCidade());
-			preparedStatement.setString(7, p.getEndereco().getBairro());
-			preparedStatement.setString(8, p.getEndereco().getCep());
+			preparedStatement.setString(7, p.getEndereco().getCep());
 
 			preparedStatement.execute();
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.OK_OPTION);
 		}
 
 	} // add
@@ -49,26 +49,23 @@ public class ClienteRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbCliente_U ?,?,?,?,?,?,?,?"+
-					"UPDATE TBCLIENTE SET "
-					+ "Nome = ?, "
-					+ "tipodelogradouro = ?, logradouro = ?, estado = ?, cidade = ?, bairro = ?, CEP = ? "
-					+ "where CPF = ?");
+					"exec sp_tbCliente_tbEndereco_U  ?,?,?,?,?,?,?,?");
 
-			preparedStatement.setString(1, p.getNome());
-			preparedStatement.setString(2, p.getEndereco().getNumero());
-			preparedStatement.setString(3, p.getEndereco().getLogradouro());
-			preparedStatement.setString(4, p.getEndereco().getEstado());
-			preparedStatement.setString(5, p.getEndereco().getCidade());
-			preparedStatement.setString(6, p.getEndereco().getBairro());
+			preparedStatement.setString(1, p.getCpf());
+			preparedStatement.setString(2, p.getNome());
+			preparedStatement.setString(3, p.getEndereco().getNumero());
+			preparedStatement.setString(4, p.getEndereco().getLogradouro());
+			preparedStatement.setString(5, p.getEndereco().getEstado());
+			preparedStatement.setString(6, p.getEndereco().getCidade());
 			preparedStatement.setString(7, p.getEndereco().getCep());
 
-			preparedStatement.setString(8, p.getCPF().get());
 
 			preparedStatement.execute();
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.OK_OPTION);
 		}
 	}
 
@@ -76,16 +73,16 @@ public class ClienteRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbCliente_D ?"+
-					"DELETE FROM TBCLIENTE WHERE CPF = ?"
-					);
+					"exec sp_tbCliente_D ?");
 
-			preparedStatement.setString(1, p.getCPF().get());
+			preparedStatement.setString(1, p.getCpf());
 
 			preparedStatement.execute();
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.OK_OPTION);
 		}
 	}
 
@@ -102,12 +99,16 @@ public class ClienteRepo {
 
 			if (rs.next()) {
 				item = new Cliente();
-				item.setCPF(rs.getString(""));
+				item.setCpf(rs.getString("cpf"));
+				item.setNome(rs.getString("nome"));
 			}
 
 		} catch (Exception e) {
 
 			e.printStackTrace();
+
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.OK_OPTION);
+			
 			return null;
 
 		} finally {
@@ -121,25 +122,27 @@ public class ClienteRepo {
 	}
 
 	public ArrayList<Cliente> list(Cliente p) throws SQLException {
+		/*
 		ArrayList<Cliente> lista = new ArrayList<Cliente>();
+
+		Cliente s = new Cliente();
+		Cliente s1 = new Cliente();
 		
-		Cliente teste = new Cliente();
-		teste.setCPF("funcionou");
-		teste.setNome("carai");
-		teste.setEndereco(new Endereco());	
+		s.setNome("a");
+		s.setCpf("b");
+		s.setEndereco(new Endereco());
 		
-		Cliente teste1 = new Cliente();
-		teste1.setCPF("funcionou2");
-		teste1.setNome("carai2");
-		teste1.setEndereco(new Endereco());	
+		s1.setNome("a");
+		s1.setCpf("b");
+		s1.setEndereco(new Endereco());
 		
-		lista.add(teste);
-		lista.add(teste1);
+		
+		lista.add(s);
+		lista.add(s1);
 		
 		return lista;
-		
-		/*PreparedStatement stmt = connection.prepareStatement(
-				"select * from TBCLIENTE");
+		*/
+		PreparedStatement stmt = connection.prepareStatement("select * from TBCLIENTE");
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		ArrayList<Cliente> list = new ArrayList<Cliente>();
@@ -147,14 +150,18 @@ public class ClienteRepo {
 		try {			
 			if (rs.next()) {
 				Cliente item = new Cliente();
-				item.setCPF(rs.getString(""));
+				item.setCpf(rs.getString("cpf"));
+				item.setNome(rs.getString("nome"));
 
 				list.add(item);
 			}
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
+			e.printStackTrace();			
+
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.WARNING_MESSAGE);
+			
 			return null;
 
 		} finally {
@@ -164,6 +171,6 @@ public class ClienteRepo {
 
 		}
 
-		return list;*/
+		return list;
 	}
 }

@@ -1,20 +1,45 @@
 package data.VO;
 
-import java.sql.Date;
+import java.util.Date;
 
 //TODO Include horario da reserva
 
 public class HistVaga {
-	int IdVeiculo;
+	String IdVeiculo;
 	int IdVaga;
 	Date DataInicio;
 	Date DataFim;
+	Date DataPagamento;
+	
+	Cliente Cliente;
+	Veiculo Veiculo;
+	
+	public Cliente getCliente() {
+		return Cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.Cliente = cliente;
+	}
+	public Veiculo getVeiculo() {
+		return Veiculo;
+	}
+	public void setVeiculo(Veiculo veiculo) {
+		this.Veiculo = veiculo;
+	}
+	
+	public Date getDataPagamento() {
+		return DataPagamento;
+	}
+	public void setDataPagamento(Date dataPagamento) {
+		DataPagamento = dataPagamento;
+	}
+	
 	boolean IsActive;
 	
-	public int getIdVeiculo() {
-		return IdVeiculo;
-	}
-	public void setIdVeiculo(int idVeiculo) {
+	public String getIdVeiculo() {
+		return this.Veiculo.Placa;
+	}	
+	public void setIdVeiculo(String idVeiculo) {
 		IdVeiculo = idVeiculo;
 	}
 	public int getIdVaga() {
@@ -26,8 +51,8 @@ public class HistVaga {
 	public Date getDataInicio() {
 		return DataInicio;
 	}
-	public void setDataInicio(Date dataInicio) {
-		DataInicio = dataInicio;
+	public void setDataInicio(Date date) {
+		DataInicio = date;
 	}
 	public Date getDataFim() {
 		return DataFim;

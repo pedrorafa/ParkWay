@@ -9,7 +9,7 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Verificar">
+          <Menu disable="true" mnemonicParsing="false" text="Verificar" visible="false">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#ShowGerenciarVagas" text="Vagas" />
                   <MenuItem mnemonicParsing="false" onAction="#ShowRelatorio" text="Relatório" visible="false" />
@@ -20,6 +20,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#ShowClientes" text="Clientes" />
               <MenuItem mnemonicParsing="false" onAction="#ShowVeiculos" text="Veiculos" />
                   <MenuItem mnemonicParsing="false" onAction="#ShowVagas" text="Vagas" />
+                  <MenuItem mnemonicParsing="false" onAction="#ShowHistVagas" text="Historico de vagas" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Sobre">

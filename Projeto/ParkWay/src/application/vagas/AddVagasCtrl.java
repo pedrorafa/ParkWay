@@ -1,19 +1,41 @@
 package application.vagas;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import data.DAO.ClienteRepo;
+import data.DAO.VagaRepo;
+import data.VO.Cliente;
+import data.VO.Endereco;
+import data.VO.Vaga;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class AddVagasCtrl {
-    @FXML
-    private AnchorPane childPane;
+	public  Vaga dados;
+	
+	@FXML
+	private TextField txtNumero;
+	@FXML
+	private TextField txtTamanho;
 
-	public void Salvar() throws IOException{
-        AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("./ShowVeiculos.fxml"));
-        childPane.getChildren().setAll(pnlOne);
-	}
-	public static void main(String[] args) {
+
+	public void Salvar(){
+		VagaRepo repo = new VagaRepo();
+		
+		Vaga p = new Vaga();
+		
+		p.setNumero(txtNumero.getText());
+		p.setTamanho(Integer.valueOf(txtTamanho.getText()));
+		
+		repo.update(p);
+		
+		Stage tmp = (Stage)txtNumero.getScene().getWindow();
+		tmp.close();
 	}
 }

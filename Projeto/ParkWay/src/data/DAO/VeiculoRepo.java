@@ -20,11 +20,10 @@ public class VeiculoRepo {
 
 		try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbVeiculo_I ?,?,?,?"
-					+ "INSERT INTO TBVEICULO " + "(PLACA, IdCliente, IdCor, MODELO)" + " VALUES (?,?,?,?)");
+			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbVeiculo_I ?,?,?,?");
 
 			preparedStatement.setString(1, p.getPlaca());
-			preparedStatement.setInt(2, p.getIdCliente());
+			preparedStatement.setString(2, p.getIdCliente());
 			preparedStatement.setInt(3, p.getIdCor());
 			preparedStatement.setString(4, p.getModelo());
 
@@ -39,11 +38,10 @@ public class VeiculoRepo {
 	public void update(Veiculo p) {
 		try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbVeiculo_U ?,?,?,?,?"
-					+ "UPDATE TBVEICULO SET " + "PLACA = ?, IdCliente = ?, IdCor = ?, MODELO = ?" + "where ID = ?");
+			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbVeiculo_U ?,?,?,?");
 
 			preparedStatement.setString(1, p.getPlaca());
-			preparedStatement.setInt(2, p.getIdCliente());
+			preparedStatement.setString(2, p.getIdCliente());
 			preparedStatement.setInt(3, p.getIdCor());
 			preparedStatement.setString(4, p.getModelo());
 
@@ -62,7 +60,7 @@ public class VeiculoRepo {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("exec sp_tbVeiculo_D ?" + "DELETE FROM TBVEICULO WHERE ID = ?");
 
-			preparedStatement.setInt(1, p.getId());
+			preparedStatement.setString(1, p.getPlaca());
 
 			preparedStatement.execute();
 
@@ -84,7 +82,10 @@ public class VeiculoRepo {
 			
 			if (rs.next()) {
 				item = new Veiculo();
-				item.setId(rs.getInt(""));
+				item.setPlaca(rs.getString("placa"));
+				item.setIdCliente(rs.getString("cpfCliente"));
+				item.setIdCor(rs.getInt("idCor"));
+				item.setModelo(rs.getString("modelo"));
 			}	
 			
 		} catch (Exception e) {			
@@ -113,7 +114,10 @@ public class VeiculoRepo {
 			
 			if (rs.next()) {
 				Veiculo item = new Veiculo();
-				item.setId(rs.getInt(""));
+				item.setPlaca(rs.getString("placa"));
+				item.setIdCliente(rs.getString("cpfCliente"));
+				item.setIdCor(rs.getInt("idCor"));
+				item.setModelo(rs.getString("modelo"));				
 				
 				list.add(item);
 			}	

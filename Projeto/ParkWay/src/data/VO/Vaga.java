@@ -6,9 +6,8 @@ import java.sql.Date;
 
 public class Vaga {
 	int Id;
-	String Numero;
+	String Numero;	
 	int Tamanho;
-	Date DataPagamento;
 	int PosX, PosY, PosZ;
 	
 	public int getPosX() {
@@ -47,10 +46,4 @@ public class Vaga {
 	public void setTamanho(int tamanho) {
 		Tamanho = tamanho;
 	}	
-	public Date getDataPagamento() {
-		return DataPagamento;
-	}
-	public void setDataPagamento(Date dataPagamento) {
-		DataPagamento = dataPagamento;
-	}
 }

@@ -10,14 +10,7 @@ public class MainCtrl {
 	@FXML
 	private AnchorPane childPane;
 
-	public void ShowVagas() throws IOException {
-		try {
-			AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("../application/CadVagas.fxml"));
-			childPane.getChildren().setAll(pnlOne);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	public void ShowGerenciarVagas() throws IOException {
 		try {
@@ -40,7 +33,7 @@ public class MainCtrl {
 
 	public void ShowClientes() {
 		try {
-			AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("../application/CadClientes.fxml"));
+			AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("../application/clientes/CadClientes.fxml"));
 			childPane.getChildren().setAll(pnlOne);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,13 +42,29 @@ public class MainCtrl {
 
 	public void ShowVeiculos() {
 		try {
-			AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("../application/CadVeiculos.fxml"));
+			AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("../application/veiculos/CadVeiculos.fxml"));
 			childPane.getChildren().setAll(pnlOne);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	public void ShowVagas() throws IOException {
+		try {
+			AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("../application/vagas/CadVagas.fxml"));
+			childPane.getChildren().setAll(pnlOne);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void ShowHistVagas() {
+		try {
+			AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("../application/histVagas/CadhistVagas.fxml"));
+			childPane.getChildren().setAll(pnlOne);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void ShowSobre() {
 		try {
 			AnchorPane pnlOne = FXMLLoader.load(this.getClass().getResource("../application/About.fxml"));
