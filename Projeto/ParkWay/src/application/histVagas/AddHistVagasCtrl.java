@@ -36,11 +36,11 @@ public class AddHistVagasCtrl implements Initializable {
 		
 		HistVaga p = new HistVaga();
 		
-		p.setIdVaga(cbVaga.getSelectionModel().getSelectedItem().getId());
+		p.setIdVaga(cbVaga.getSelectionModel().getSelectedItem().getNumero());
 		p.setIdVeiculo(cbVeiculo.getSelectionModel().getSelectedItem().getPlaca());
 		p.setDataInicio(new Date());
 		p.setDataFim(null);
-		p.setDataPagamento(Date.from(dtDataPagamento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+		p.setDataPagamento(java.util.Date.from(dtDataPagamento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 		p.setIsActive(true);
 		
 		repo.add(p);

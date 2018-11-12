@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 import data.Util.DbUtil;
@@ -27,7 +28,9 @@ public class HistVagaRepo {
 
 			preparedStatement.setString(1, p.getIdVeiculo());
 			preparedStatement.setInt(2, p.getIdVaga());
-			preparedStatement.setDate(3, (Date)p.getDataPagamento());
+			Date date = new Date(0);
+			date.from(p.getDataPagamento().toInstant());
+			preparedStatement.setDate(3, date);
 			preparedStatement.setBoolean(4, p.getIsActive());
 
 			preparedStatement.execute();
@@ -109,6 +112,7 @@ public class HistVagaRepo {
 	public ArrayList<HistVaga> list(HistVaga p) throws SQLException {
 		PreparedStatement stmt = connection.prepareStatement(
 				"select * from TBHISTVAGA");
+		
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		ArrayList<HistVaga> list = new ArrayList<HistVaga>();

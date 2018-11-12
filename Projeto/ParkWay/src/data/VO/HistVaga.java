@@ -37,7 +37,7 @@ public class HistVaga {
 	boolean IsActive;
 	
 	public String getIdVeiculo() {
-		return this.Veiculo.Placa;
+		return this.IdVeiculo;
 	}	
 	public void setIdVeiculo(String idVeiculo) {
 		IdVeiculo = idVeiculo;
@@ -65,5 +65,10 @@ public class HistVaga {
 	}
 	public void setIsActive(boolean isActive) {
 		IsActive = isActive;
+	}
+	
+
+	public String toString() {
+		return IdVeiculo +" - "+ IdVaga;		
 	}
 }

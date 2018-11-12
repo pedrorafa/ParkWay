@@ -1,18 +1,12 @@
 package data.VO;
 
 public class Veiculo {
-	int Id;
+	
 	String IdCliente;
 	int IdCor;
 	String Placa;
-	String Modelo;
+	String Modelo;	
 	
-	public int getId() {
-		return Id;
-	}
-	public void setId(int id) {
-		Id = id;
-	}
 	public String getIdCliente() {
 		return IdCliente;
 	}
@@ -36,5 +30,9 @@ public class Veiculo {
 	}
 	public void setModelo(String modelo) {
 		Modelo = modelo;
+	}
+
+	public String toString() {
+		return Placa +" - "+ Modelo;		
 	}
 }

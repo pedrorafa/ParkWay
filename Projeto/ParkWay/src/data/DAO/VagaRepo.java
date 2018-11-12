@@ -22,13 +22,12 @@ public class VagaRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbVaga_I ?,?,?,?,?");
+					"exec sp_tbVaga_I ?,?,?,?");
 
-			preparedStatement.setString(1, p.getNumero());
+			preparedStatement.setInt(1, p.getNumero());
 			preparedStatement.setInt(2, p.getTamanho());
 			preparedStatement.setInt(3, p.getPosX());
 			preparedStatement.setInt(4, p.getPosY());
-			preparedStatement.setInt(5, p.getPosZ());
 
 			preparedStatement.execute();
 
@@ -42,14 +41,12 @@ public class VagaRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbVaga_U ?,?,?,?,?");
+					"exec sp_tbVaga_U ?,?,?,?");
 
-			preparedStatement.setString(1, p.getNumero());
+			preparedStatement.setInt(1, p.getNumero());
 			preparedStatement.setInt(2, p.getTamanho());
 			preparedStatement.setInt(3, p.getPosX());
 			preparedStatement.setInt(4, p.getPosY());
-			preparedStatement.setInt(5, p.getPosZ());			
-			preparedStatement.setInt(6, p.getId());
 
 			preparedStatement.execute();
 
@@ -64,7 +61,7 @@ public class VagaRepo {
 			PreparedStatement preparedStatement = connection.prepareStatement(
 					"exec sp_tbVaga_D ?");
 
-			preparedStatement.setInt(1, p.getId());
+			preparedStatement.setInt(1, p.getNumero());
 
 			preparedStatement.execute();
 
@@ -77,7 +74,10 @@ public class VagaRepo {
 		
 		PreparedStatement stmt = connection.prepareStatement(
 				"select * from "
-				+ "TBVAGA Where Id = ?");
+				+ "TBVAGA Where numero = ?");
+		
+		stmt.setInt(1, p.getNumero());
+		
 		ResultSet rs = (ResultSet) stmt.executeQuery();		
 		
 		Vaga item = null;
@@ -86,7 +86,7 @@ public class VagaRepo {
 			
 			if (rs.next()) {
 				item = new Vaga();
-				item.setId(rs.getInt("numero"));
+				item.setNumero(rs.getInt("numero"));
 				item.setTamanho(rs.getInt("tamanho"));
 				item.setPosX(rs.getInt("posx"));
 				item.setPosY(rs.getInt("posy"));
@@ -117,7 +117,7 @@ public class VagaRepo {
 			
 			if (rs.next()) {
 				Vaga item = new Vaga();
-				item.setId(rs.getInt("numero"));
+				item.setNumero(rs.getInt("numero"));
 				item.setTamanho(rs.getInt("tamanho"));
 				item.setPosX(rs.getInt("posx"));
 				item.setPosY(rs.getInt("posy"));

@@ -29,11 +29,12 @@ public class ClienteRepo {
 
 			preparedStatement.setString(1, p.getCpf());
 			preparedStatement.setString(2, p.getNome());
-			preparedStatement.setString(3, p.getEndereco().getNumero());
-			preparedStatement.setString(4, p.getEndereco().getLogradouro());
-			preparedStatement.setString(5, p.getEndereco().getEstado());
-			preparedStatement.setString(6, p.getEndereco().getCidade());
-			preparedStatement.setString(7, p.getEndereco().getCep());
+			preparedStatement.setString(3, p.getEmail());
+			preparedStatement.setString(4, p.getEndereco().getNumero());
+			preparedStatement.setString(5, p.getEndereco().getLogradouro());
+			preparedStatement.setString(6, p.getEndereco().getEstado());
+			preparedStatement.setString(7, p.getEndereco().getCidade());
+			preparedStatement.setString(8, p.getEndereco().getCep());
 
 			preparedStatement.execute();
 
@@ -53,11 +54,12 @@ public class ClienteRepo {
 
 			preparedStatement.setString(1, p.getCpf());
 			preparedStatement.setString(2, p.getNome());
-			preparedStatement.setString(3, p.getEndereco().getNumero());
-			preparedStatement.setString(4, p.getEndereco().getLogradouro());
-			preparedStatement.setString(5, p.getEndereco().getEstado());
-			preparedStatement.setString(6, p.getEndereco().getCidade());
-			preparedStatement.setString(7, p.getEndereco().getCep());
+			preparedStatement.setString(3, p.getEmail());
+			preparedStatement.setString(4, p.getEndereco().getNumero());
+			preparedStatement.setString(5, p.getEndereco().getLogradouro());
+			preparedStatement.setString(6, p.getEndereco().getEstado());
+			preparedStatement.setString(7, p.getEndereco().getCidade());
+			preparedStatement.setString(8, p.getEndereco().getCep());
 
 
 			preparedStatement.execute();
@@ -73,7 +75,7 @@ public class ClienteRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbCliente_D ?");
+					"exec sp_tbCliente_tbEndereco_D ?");
 
 			preparedStatement.setString(1, p.getCpf());
 
@@ -91,6 +93,9 @@ public class ClienteRepo {
 		PreparedStatement stmt = connection.prepareStatement(
 				"select * from TBCLIENTE "
 				+ "WHERE CPF = ?");
+
+		stmt.setString(1, p.getCpf());
+		
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		Cliente item = null;

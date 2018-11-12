@@ -106,7 +106,8 @@ public class CadClientesCtrl implements Initializable {
 		EditClientesCtrl controller = loader.getController();
 
 		controller.dados = dados;
-
+		controller.loadItem();
+		
 		Scene scene = new Scene(pnlOne);
 
 		Stage popUp = new Stage();

@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EditClientesCtrl implements Initializable{
+public class EditClientesCtrl {
 	public  Cliente dados;
 	
 	@FXML
@@ -57,15 +57,14 @@ public class EditClientesCtrl implements Initializable{
 		tmp.close();
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void loadItem() {
 		txtNome.setText(dados.getNome());
 		txtCpf.setText(dados.getCpf());
-		txtCep.setText(dados.getEndereco().getCep());
-		txtRua.setText(dados.getEndereco().getLogradouro());
-		txtNumero.setText(dados.getEndereco().getNumero());
-		cbCidade.getSelectionModel().select(dados.getEndereco().getCidade());
-		cbEstado.getSelectionModel().select(dados.getEndereco().getEstado());
+		//txtCep.setText(dados.getEndereco().getCep());
+		//txtRua.setText(dados.getEndereco().getLogradouro());
+		//txtNumero.setText(dados.getEndereco().getNumero());
+		//cbCidade.getSelectionModel().select(dados.getEndereco().getCidade());
+		//cbEstado.getSelectionModel().select(dados.getEndereco().getEstado());
 		
 	}
 }

@@ -20,7 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class EditVagasCtrl implements Initializable {
+public class EditVagasCtrl {
 	public  Vaga dados;
 	
 	@FXML
@@ -34,7 +34,7 @@ public class EditVagasCtrl implements Initializable {
 		
 		Vaga p = new Vaga();
 		
-		p.setNumero(txtNumero.getText());
+		p.setNumero(Integer.valueOf(txtNumero.getText()));
 		p.setTamanho(Integer.valueOf(txtTamanho.getText()));
 		
 		repo.update(p);
@@ -43,9 +43,8 @@ public class EditVagasCtrl implements Initializable {
 		tmp.close();
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {		
-		txtNumero.setText(dados.getNumero());
+	public void loadItem() {		
+		txtNumero.setText(String.valueOf(dados.getNumero()));
 		txtTamanho.setText(String.valueOf(dados.getTamanho()));
 	}
 }

@@ -101,6 +101,7 @@ public class CadVagasCtrl implements Initializable {
 		EditVagasCtrl controller = loader.getController();
 		
 		controller.dados = dados;
+		controller.loadItem();
 		
 		Scene scene = new Scene(pnlOne);
 

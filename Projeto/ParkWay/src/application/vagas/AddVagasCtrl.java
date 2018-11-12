@@ -30,10 +30,10 @@ public class AddVagasCtrl {
 		
 		Vaga p = new Vaga();
 		
-		p.setNumero(txtNumero.getText());
+		p.setNumero(Integer.valueOf(txtNumero.getText()));
 		p.setTamanho(Integer.valueOf(txtTamanho.getText()));
 		
-		repo.update(p);
+		repo.add(p);
 		
 		Stage tmp = (Stage)txtNumero.getScene().getWindow();
 		tmp.close();

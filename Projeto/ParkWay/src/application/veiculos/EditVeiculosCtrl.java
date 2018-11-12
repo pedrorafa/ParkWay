@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EditVeiculosCtrl implements Initializable {
+public class EditVeiculosCtrl {
 	public  Veiculo dados;
 	
 	@FXML
@@ -45,8 +45,7 @@ public class EditVeiculosCtrl implements Initializable {
 		tmp.close();
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void loadItem() {
 		txtPlaca.setText(dados.getPlaca());
 		txtModelo.setText(dados.getModelo());
 		cbCor.getSelectionModel().select(dados.getIdCor());

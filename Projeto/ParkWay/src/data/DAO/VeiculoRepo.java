@@ -45,8 +45,6 @@ public class VeiculoRepo {
 			preparedStatement.setInt(3, p.getIdCor());
 			preparedStatement.setString(4, p.getModelo());
 
-			preparedStatement.setInt(5, p.getId());
-
 			preparedStatement.execute();
 
 		} catch (Exception e) {

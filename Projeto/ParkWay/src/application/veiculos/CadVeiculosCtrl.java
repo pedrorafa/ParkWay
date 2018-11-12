@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -31,7 +32,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 
-public class CadVeiculosCtrl {
+public class CadVeiculosCtrl implements Initializable{
 	@FXML
 	private AnchorPane childPane;
 
@@ -100,6 +101,7 @@ public class CadVeiculosCtrl {
 		EditVeiculosCtrl controller = loader.getController();
 
 		controller.dados = dados;
+		controller.loadItem();
 
 		Scene scene = new Scene(pnlOne);
 
@@ -144,6 +146,7 @@ public class CadVeiculosCtrl {
 		}
 	}
 
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		tabela.getColumns().clear();
 

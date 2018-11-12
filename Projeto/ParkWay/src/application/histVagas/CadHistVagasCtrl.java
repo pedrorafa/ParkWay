@@ -62,7 +62,7 @@ public class CadHistVagasCtrl implements Initializable {
 	private TableColumn<HistVaga, String> colVeiculo;
 	private TableColumn<HistVaga, String> colNumero;
 	private TableColumn<HistVaga, String> colDataPagamento;
-	private TableColumn<HistVaga, String> colSituacao;
+	private TableColumn<HistVaga, Boolean> colSituacao;
 
 	private TableColumn colEdit;
 	private TableColumn colDelete;
@@ -111,6 +111,7 @@ public class CadHistVagasCtrl implements Initializable {
 		EditHistVagasCtrl controller = loader.getController();
 
 		controller.dados = histVaga;
+		controller.loadItem();
 
 		Scene scene = new Scene(pnlOne);
 
@@ -155,15 +156,25 @@ public class CadHistVagasCtrl implements Initializable {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		tabela.getColumns().clear();
 
-		colNome = new TableColumn<HistVaga, String>("Nome");
+		colNome = new TableColumn<HistVaga, String>("Cliente.Nome");
 		colVeiculo = new TableColumn<HistVaga, String>("IdVeiculo");
 		colNumero = new TableColumn<HistVaga, String>("IdVaga");
-		colNumero = new TableColumn<HistVaga, String>("DataPagamento");
-		colSituacao = new TableColumn<HistVaga, String>("IsActive");
-
+		colDataPagamento = new TableColumn<HistVaga, String>("DataPagamento");
+		colSituacao = new TableColumn<HistVaga, Boolean>("IsActive");
+		
+		Callback<TableColumn<HistVaga, Boolean>, TableCell<HistVaga, Boolean>> booleanCellFactory = 
+            new Callback<TableColumn<HistVaga, Boolean>, TableCell<HistVaga, Boolean>>() {
+            @Override
+                public TableCell<HistVaga, Boolean> call(TableColumn<HistVaga, Boolean> p) {
+                    return new TableCell<HistVaga, Boolean>();
+            }
+        };
+        colSituacao.setCellFactory(booleanCellFactory);
+		
 		colEdit = new TableColumn("Editar");
 		Callback<TableColumn<HistVaga, Void>, TableCell<HistVaga, Void>> cellFactoryEdit = new Callback<TableColumn<HistVaga, Void>, TableCell<HistVaga, Void>>() {
 			@Override
@@ -197,13 +208,13 @@ public class CadHistVagasCtrl implements Initializable {
 			}
 		};
 
-		colDelete = new TableColumn("Desativar");
+		colDelete = new TableColumn("Mudar Status");
 		Callback<TableColumn<HistVaga, Void>, TableCell<HistVaga, Void>> cellFactoryDelete = new Callback<TableColumn<HistVaga, Void>, TableCell<HistVaga, Void>>() {
 			@Override
 			public TableCell<HistVaga, Void> call(final TableColumn<HistVaga, Void> param) {
 				final TableCell<HistVaga, Void> cell = new TableCell<HistVaga, Void>() {
 
-					private final Button btn = new Button("Desativar");
+					private final Button btn = new Button("Trocar");
 
 					{
 						btn.setOnAction((ActionEvent event) -> {

@@ -5,8 +5,7 @@ import java.sql.Date;
 //TODO include boolean IsOcupada
 
 public class Vaga {
-	int Id;
-	String Numero;	
+	int Numero;	
 	int Tamanho;
 	int PosX, PosY, PosZ;
 	
@@ -28,16 +27,11 @@ public class Vaga {
 	public void setPosZ(int posZ) {
 		PosZ = posZ;
 	}
-	public int getId() {
-		return Id;
-	}
-	public void setId(int id) {
-		Id = id;
-	}
-	public String getNumero() {
+	
+	public int getNumero() {
 		return Numero;
 	}
-	public void setNumero(String numero) {
+	public void setNumero(int numero) {
 		Numero = numero;
 	}
 	public int getTamanho() {
@@ -45,5 +39,9 @@ public class Vaga {
 	}
 	public void setTamanho(int tamanho) {
 		Tamanho = tamanho;
-	}	
+	}		
+
+	public String toString() {
+		return Numero + " - Tamanho: " + Tamanho;		
+	}
 }

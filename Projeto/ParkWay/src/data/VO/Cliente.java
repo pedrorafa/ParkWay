@@ -6,6 +6,9 @@ import javafx.beans.property.SimpleStringProperty;
 public class Cliente {
 	String  Cpf;
 	String  Nome;
+	String Email;
+	
+
 	Endereco Endereco;
 	
 	public Cliente() {
@@ -29,5 +32,17 @@ public class Cliente {
 	}
 	public void setEndereco(Endereco endereco) {
 		Endereco = endereco;
+	}
+	
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+	
+	public String toString() {
+		return Nome +" - "+ Cpf;		
 	}
 }

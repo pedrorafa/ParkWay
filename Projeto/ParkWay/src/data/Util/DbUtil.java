@@ -16,7 +16,7 @@ public class DbUtil {
 			try {
 							
 				String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-				String url = "jdbc:sqlserver://localhost:1433;Database=tp2java"; //tp2java
+				String url = "jdbc:sqlserver://localhost:1433;Database=parkWay"; //tp2java
 				String user = "sa";
 				String password = "123456";
 				
