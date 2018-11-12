@@ -12,7 +12,7 @@ create table tbCliente
 go
 create table tbEndereco
 (
-	idEndereco int primary key identity(1,1),
+	cpf varchar(14) primary key,
 	cep varchar(14),
 	estado varchar(2),
 	cidade varchar(50),
@@ -37,7 +37,7 @@ create table tbVaga
 	posy int
 )
 go
-create table tbHistoricoVaga
+create table tbHistVaga
 (
 	placa varchar(7),
 	numero int,

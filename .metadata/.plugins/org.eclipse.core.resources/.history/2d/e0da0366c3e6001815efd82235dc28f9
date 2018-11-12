@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.clientes.AddClientesCtrl">
+   <children>
+      <Label layoutX="13.0" layoutY="16.0" text="Nº da Vaga" />
+      <TextField fx:id="txtVaga" layoutX="83.0" layoutY="12.0" prefHeight="25.0" prefWidth="80.0" />
+      <Button layoutX="545.0" layoutY="88.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
+      <TextField fx:id="txtTamanho" layoutX="228.0" layoutY="12.0" prefHeight="25.0" prefWidth="80.0" />
+      <Label layoutX="170.0" layoutY="16.0" text="Tamanho" />
+   </children>
+</AnchorPane>

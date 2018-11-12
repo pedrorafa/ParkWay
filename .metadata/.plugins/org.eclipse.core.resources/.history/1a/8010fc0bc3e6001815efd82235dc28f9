@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.clientes.AddClientesCtrl">
+   <children>
+      <Button layoutX="546.0" layoutY="86.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Salvar" />
+      <ChoiceBox fx:id="cbCor" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="100.0" />
+      <Label layoutX="17.0" layoutY="14.0" text="Cor" />
+      <ComboBox fx:id="cbCliente" layoutX="14.0" layoutY="86.0" prefHeight="25.0" prefWidth="435.0" />
+      <TextField fx:id="txtModelo" layoutX="256.0" layoutY="31.0" prefHeight="25.0" prefWidth="377.0" />
+      <TextField fx:id="txtPlaca" layoutX="122.0" layoutY="31.0" prefHeight="25.0" prefWidth="122.0" />
+      <Label layoutX="122.0" layoutY="14.0" text="Placa" />
+      <Label layoutX="256.0" layoutY="14.0" text="Modelo" />
+      <Label layoutX="14.0" layoutY="66.0" text="Cliente" />
+   </children>
+</AnchorPane>

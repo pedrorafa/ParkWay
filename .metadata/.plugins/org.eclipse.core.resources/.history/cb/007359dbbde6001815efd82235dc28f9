@@ -4,27 +4,25 @@ import data.Validation.CPF;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Cliente {
-	SimpleStringProperty  Cpf;
-	SimpleStringProperty  Nome;
+	String  Cpf;
+	String  Nome;
 	Endereco Endereco;
 	
 	public Cliente() {
-		Cpf = new SimpleStringProperty();
-		Nome = new SimpleStringProperty();
 	}
 	
-	public SimpleStringProperty  getCPF() {
+	public String  getCpf() {
 		return Cpf;
 	}
-	public void setCPF(String cpf) {
-		if(!CPF.ValidarCpf(cpf))
-			Cpf.set(cpf);
+	public void setCpf(String cpf) {
+		if(CPF.ValidarCpf(cpf))
+			Cpf = cpf;
 	}
-	public SimpleStringProperty  getNome() {
+	public String  getNome() {
 		return Nome;
 	}
 	public void setNome(String nome) {
-		Nome.set(nome);
+		Nome = nome;
 	}
 	public Endereco getEndereco() {
 		return Endereco;
