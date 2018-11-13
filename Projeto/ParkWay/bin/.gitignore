@@ -1,4 +1,8 @@
+/.classpath
+/.project
+/.settings/
 /application/
+/build.fxbuild
 /controllers/
 /data/
 /reports/

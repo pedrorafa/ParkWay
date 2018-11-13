@@ -119,7 +119,7 @@ public class HistVagaRepo {
 
 		try {
 
-			if (rs.next()) {
+			while (rs.next()) {
 				HistVaga item = new HistVaga();
 				item.setIdVaga(rs.getInt("numero"));
 				item.setIdVeiculo(rs.getString("placa"));

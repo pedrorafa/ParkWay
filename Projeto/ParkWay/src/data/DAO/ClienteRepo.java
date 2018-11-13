@@ -126,34 +126,14 @@ public class ClienteRepo {
 		return item;
 	}
 
-	public ArrayList<Cliente> list(Cliente p) throws SQLException {
-		/*
-		ArrayList<Cliente> lista = new ArrayList<Cliente>();
-
-		Cliente s = new Cliente();
-		Cliente s1 = new Cliente();
-		
-		s.setNome("a");
-		s.setCpf("b");
-		s.setEndereco(new Endereco());
-		
-		s1.setNome("a");
-		s1.setCpf("b");
-		s1.setEndereco(new Endereco());
-		
-		
-		lista.add(s);
-		lista.add(s1);
-		
-		return lista;
-		*/
+	public ArrayList<Cliente> list(Cliente p) throws SQLException {		
 		PreparedStatement stmt = connection.prepareStatement("select * from TBCLIENTE");
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		ArrayList<Cliente> list = new ArrayList<Cliente>();
 
 		try {			
-			if (rs.next()) {
+			while (rs.next()) {
 				Cliente item = new Cliente();
 				item.setCpf(rs.getString("cpf"));
 				item.setNome(rs.getString("nome"));

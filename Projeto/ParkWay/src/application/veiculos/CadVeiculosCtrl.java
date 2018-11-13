@@ -12,6 +12,7 @@ import data.DAO.VeiculoRepo;
 import data.VO.Cliente;
 import data.VO.Veiculo;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +27,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -53,7 +55,7 @@ public class CadVeiculosCtrl implements Initializable{
 	private TableColumn<Veiculo, String> colPlaca;
 	private TableColumn<Veiculo, String> colModelo;
 	private TableColumn<Veiculo, String> colCliente;
-	private TableColumn<Veiculo, String> colCor;
+	private TableColumn<Veiculo, Double> colCor;
 	private TableColumn colEdit;
 	private TableColumn colDelete;
 
@@ -153,8 +155,13 @@ public class CadVeiculosCtrl implements Initializable{
 		colCliente = new TableColumn<Veiculo, String>("IdCliente");
 		colModelo = new TableColumn<Veiculo, String>("Modelo");
 		colPlaca = new TableColumn<Veiculo, String>("Placa");
-		colCor = new TableColumn<Veiculo, String>("IdCor");
-
+		colCor = new TableColumn<Veiculo, Double>("IdCor");		
+		
+		colCliente.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("IdCliente"));
+		colModelo.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("Modelo"));
+		colPlaca.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("Placa"));
+		colCor.setCellValueFactory(new PropertyValueFactory<Veiculo, Double>("IdCor"));
+		
 		colEdit = new TableColumn("Editar");
 		Callback<TableColumn<Veiculo, Void>, TableCell<Veiculo, Void>> cellFactoryEdit = new Callback<TableColumn<Veiculo, Void>, TableCell<Veiculo, Void>>() {
 			@Override

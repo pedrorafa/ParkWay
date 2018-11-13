@@ -116,7 +116,7 @@ public class PagamentoRepo {
 
 		try {
 
-			if (rs.next()) {
+			while (rs.next()) {
 				Pagamento item = new Pagamento();
 				item.setIdVaga(rs.getInt(""));
 

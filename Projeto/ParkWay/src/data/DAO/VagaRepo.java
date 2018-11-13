@@ -115,7 +115,7 @@ public class VagaRepo {
 
 		try {
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				Vaga item = new Vaga();
 				item.setNumero(rs.getInt("numero"));
 				item.setTamanho(rs.getInt("tamanho"));

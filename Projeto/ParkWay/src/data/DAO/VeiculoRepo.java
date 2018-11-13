@@ -71,7 +71,9 @@ public class VeiculoRepo {
 		
 		PreparedStatement stmt = connection.prepareStatement(
 				"select * from TBVEICULO "
-				+ "Where Id = ?");
+				+ "Where placa = ?");
+		stmt.setString(1, p.getPlaca());
+		
 		ResultSet rs = (ResultSet) stmt.executeQuery();		
 		
 		Veiculo item = null;
@@ -110,7 +112,7 @@ public class VeiculoRepo {
 
 		try {
 			
-			if (rs.next()) {
+			while (rs.next()) {
 				Veiculo item = new Veiculo();
 				item.setPlaca(rs.getString("placa"));
 				item.setIdCliente(rs.getString("cpfCliente"));

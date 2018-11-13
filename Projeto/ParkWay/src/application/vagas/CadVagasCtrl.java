@@ -152,6 +152,9 @@ public class CadVagasCtrl implements Initializable {
 		colNumero = new TableColumn<Vaga, String>("Numero");
 		colTamanho = new TableColumn<Vaga, String>("Tamanho");
 
+		colNumero.setCellValueFactory(new PropertyValueFactory<Vaga, String>("Numero"));
+		colTamanho.setCellValueFactory(new PropertyValueFactory<Vaga, String>("Tamanho"));		
+		
 		colEdit = new TableColumn("Editar");		
 		Callback<TableColumn<Vaga, Void>, TableCell<Vaga, Void>> cellFactoryEdit = new Callback<TableColumn<Vaga, Void>, TableCell<Vaga, Void>>() {
 			@Override
