@@ -231,7 +231,7 @@ public class CadVeiculosCtrl implements Initializable{
 
 		colEdit.setCellFactory(cellFactoryEdit);
 		colDelete.setCellFactory(cellFactoryDelete);
-		tabela.getColumns().addAll(colCliente, colModelo, colPlaca, colCor, colEdit, colDelete);
+		tabela.getColumns().addAll(colCliente, colModelo, colPlaca, colCor, /*colEdit,*/ colDelete);
 
 		data = FXCollections.observableArrayList();
 		tabela.setItems(data);

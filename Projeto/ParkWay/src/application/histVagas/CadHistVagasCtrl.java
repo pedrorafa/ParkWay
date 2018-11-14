@@ -15,6 +15,7 @@ import data.DAO.HistVagaRepo;
 import data.VO.Cliente;
 import data.VO.HistVaga;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -160,26 +161,27 @@ public class CadHistVagasCtrl implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		tabela.getColumns().clear();
 
-		colNome = new TableColumn<HistVaga, String>("Cliente.Nome");
+		colNome = new TableColumn<HistVaga, String>("Cliente");
 		colVeiculo = new TableColumn<HistVaga, String>("IdVeiculo");
 		colNumero = new TableColumn<HistVaga, String>("IdVaga");
 		colDataPagamento = new TableColumn<HistVaga, String>("DataPagamento");
 		colSituacao = new TableColumn<HistVaga, Boolean>("IsActive");
 		
-		colNome.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("Cliente.Nome"));
+		colNome.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("Cliente"));
 		colVeiculo.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("IdVeiculo"));
 		colNumero.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("IdVaga"));
 		colDataPagamento.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("DataPagamento"));
-		colSituacao.setCellValueFactory(new PropertyValueFactory<HistVaga, Boolean>("IsActive"));		
+		//colSituacao.setCellValueFactory(new PropertyValueFactory<HistVaga, Boolean>("IsActive"));		
 		
-		Callback<TableColumn<HistVaga, Boolean>, TableCell<HistVaga, Boolean>> booleanCellFactory = 
-            new Callback<TableColumn<HistVaga, Boolean>, TableCell<HistVaga, Boolean>>() {
-            @Override
-                public TableCell<HistVaga, Boolean> call(TableColumn<HistVaga, Boolean> p) {
-                    return new TableCell<HistVaga, Boolean>();
-            }
-        };
-        colSituacao.setCellFactory(booleanCellFactory);
+		TableColumn<HistVaga, Boolean> colSituacao = new TableColumn<HistVaga, Boolean>("IsActive");
+		colSituacao.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getIsActive()));
+		colSituacao.setCellFactory(col -> new TableCell<HistVaga, Boolean>() {
+		    @Override
+		    protected void updateItem(Boolean item, boolean empty) {
+		        super.updateItem(item, empty) ;
+		        setText(empty ? null : item ? "Ativo" : "Inativo" );
+		    }
+		});
 		
 		colEdit = new TableColumn("Editar");
 		Callback<TableColumn<HistVaga, Void>, TableCell<HistVaga, Void>> cellFactoryEdit = new Callback<TableColumn<HistVaga, Void>, TableCell<HistVaga, Void>>() {
@@ -252,7 +254,7 @@ public class CadHistVagasCtrl implements Initializable {
 
 		colEdit.setCellFactory(cellFactoryEdit);
 		colDelete.setCellFactory(cellFactoryDelete);
-		tabela.getColumns().addAll(colNome, colVeiculo, colNumero, colDataPagamento, colSituacao, colEdit, colDelete);
+		tabela.getColumns().addAll(colNome, colVeiculo, colNumero, colDataPagamento, colSituacao, /*colEdit,*/ colDelete);
 
 		data = FXCollections.observableArrayList();
 		tabela.setItems(data);

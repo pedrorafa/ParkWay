@@ -59,6 +59,7 @@ public class EditClientesCtrl {
 
 	public void loadItem() {
 		txtNome.setText(dados.getNome());
+		txtCpf.setDisable(true);
 		txtCpf.setText(dados.getCpf());
 		//txtCep.setText(dados.getEndereco().getCep());
 		//txtRua.setText(dados.getEndereco().getLogradouro());

@@ -45,6 +45,7 @@ public class EditVagasCtrl {
 
 	public void loadItem() {		
 		txtNumero.setText(String.valueOf(dados.getNumero()));
+		txtNumero.setDisable(true);
 		txtTamanho.setText(String.valueOf(dados.getTamanho()));
 	}
 }

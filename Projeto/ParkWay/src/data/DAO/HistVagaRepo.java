@@ -9,6 +9,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 
 import data.Util.DbUtil;
+import data.VO.Cliente;
 import data.VO.HistVaga;
 import data.VO.Pagamento;
 
@@ -78,8 +79,9 @@ public class HistVagaRepo {
 	public HistVaga get(HistVaga p) throws SQLException {
 
 		PreparedStatement stmt = connection.prepareStatement(
-				"select * from TBHISTVAGA"
-				+ " WHERE IdVeiculo = ? AND IdVaga = ?");
+				"select v.*, c.nome, c.cpf from TBHISTVAGA  v inner join tbveiculo vei on v.placa = vei.placa" + 
+				 " inner join tbcliente c on vei.cpfCliente = c.cpf"+
+				 " WHERE IdVeiculo = ? AND IdVaga = ?");
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		HistVaga item = null;
@@ -92,6 +94,10 @@ public class HistVagaRepo {
 				item.setIdVeiculo(rs.getString("placa"));
 				item.setDataPagamento(rs.getDate("dataPgto"));
 				item.setIsActive(rs.getBoolean("ativo"));
+				
+				item.setCliente(new Cliente());
+				item.getCliente().setNome(rs.getString("nome"));
+				item.getCliente().setCpf(rs.getString("cpf"));
 			}
 
 		} catch (Exception e) {
@@ -111,7 +117,8 @@ public class HistVagaRepo {
 
 	public ArrayList<HistVaga> list(HistVaga p) throws SQLException {
 		PreparedStatement stmt = connection.prepareStatement(
-				"select * from TBHISTVAGA");
+				"select v.*, c.nome, c.cpf from TBHISTVAGA v inner join tbveiculo vei on v.placa = vei.placa"
+				+ " inner join tbcliente c on vei.cpfCliente = c.cpf");
 		
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
@@ -126,6 +133,10 @@ public class HistVagaRepo {
 				item.setDataPagamento(rs.getDate("dataPgto"));
 				item.setIsActive(rs.getBoolean("ativo"));
 
+				item.setCliente(new Cliente());
+				item.getCliente().setNome(rs.getString("nome"));
+				item.getCliente().setCpf(rs.getString("cpf"));
+				
 				list.add(item);
 			}
 
