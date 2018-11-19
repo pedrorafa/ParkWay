@@ -41,11 +41,7 @@ public class CadVagasCtrl implements Initializable {
 	@FXML
 	private TextField txtNumero;
 	@FXML
-	private ChoiceBox<Veiculo> cbVeiculo;
-	@FXML
-	private ChoiceBox<Vaga> cbVaga;
-	@FXML
-	private DatePicker dtDataPagamento;		
+	private TextField txtNTamanho;
     
     private ObservableList<Vaga> data;
 

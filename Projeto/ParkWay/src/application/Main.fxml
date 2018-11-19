@@ -9,7 +9,7 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu disable="true" mnemonicParsing="false" text="Verificar" visible="false">
+          <Menu mnemonicParsing="false" text="Verificar">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#ShowGerenciarVagas" text="Vagas" />
                   <MenuItem mnemonicParsing="false" onAction="#ShowRelatorio" text="Relatório" visible="false" />

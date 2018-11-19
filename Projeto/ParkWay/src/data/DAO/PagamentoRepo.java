@@ -27,7 +27,7 @@ public class PagamentoRepo {
 
 			preparedStatement.setDate(1, p.getData());
 			preparedStatement.setInt(2, p.getIdVaga());
-			preparedStatement.setInt(3, p.getIdVeiculo());
+			preparedStatement.setString(3, p.getIdVeiculo());
 			preparedStatement.setInt(4, p.getIdFormaPagamento());
 			preparedStatement.setDouble(5, p.getValor());
 
@@ -50,7 +50,7 @@ public class PagamentoRepo {
 			preparedStatement.setInt(2, p.getIdFormaPagamento());
 			preparedStatement.setDate(3, p.getData());
 			preparedStatement.setInt(4, p.getIdVaga());
-			preparedStatement.setInt(5, p.getIdVeiculo());
+			preparedStatement.setString(5, p.getIdVeiculo());
 
 			preparedStatement.execute();
 
@@ -68,7 +68,7 @@ public class PagamentoRepo {
 
 			preparedStatement.setDate(1, p.getData());
 			preparedStatement.setInt(2, p.getIdVaga());
-			preparedStatement.setInt(3, p.getIdVeiculo());
+			preparedStatement.setString(3, p.getIdVeiculo());
 
 			preparedStatement.execute();
 
@@ -81,7 +81,7 @@ public class PagamentoRepo {
 
 		PreparedStatement stmt = connection.prepareStatement(
 				"select * from TBPAGAMENTO "
-				+ "WHERE DATA = ? AND IdVaga = ? AND IdVeiculo = ?");
+				+ "WHERE IdVaga = ? AND IdVeiculo = ?");
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		Pagamento item = null;

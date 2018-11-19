@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Pagamento {
 	int IdVaga;
-	int IdVeiculo;
+	String IdVeiculo;
 	Date Data;
 	int IdFormaPagamento;
 	double Valor;
@@ -15,10 +15,10 @@ public class Pagamento {
 	public void setIdVaga(int idVaga) {
 		IdVaga = idVaga;
 	}
-	public int getIdVeiculo() {
+	public String getIdVeiculo() {
 		return IdVeiculo;
 	}
-	public void setIdVeiculo(int idVeiculo) {
+	public void setIdVeiculo(String idVeiculo) {
 		IdVeiculo = idVeiculo;
 	}
 	public Date getData() {
