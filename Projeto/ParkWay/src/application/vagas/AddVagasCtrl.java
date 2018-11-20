@@ -2,7 +2,10 @@ package application.vagas;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
 
 import data.DAO.ClienteRepo;
 import data.DAO.VagaRepo;
@@ -25,15 +28,13 @@ public class AddVagasCtrl {
 	private TextField txtTamanho;
 
 
-	public void Salvar(){
+	public void Salvar() throws SQLException{
 		VagaRepo repo = new VagaRepo();
 		
 		Vaga p = new Vaga();
 		
 		p.setNumero(Integer.valueOf(txtNumero.getText()));
 		p.setTamanho(Integer.valueOf(txtTamanho.getText()));
-		
-		repo.add(p);
 		
 		Stage tmp = (Stage)txtNumero.getScene().getWindow();
 		tmp.close();

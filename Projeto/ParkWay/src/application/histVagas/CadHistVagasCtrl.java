@@ -8,11 +8,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import application.clientes.AddClientesCtrl;
-import application.clientes.EditClientesCtrl;
-import data.DAO.ClienteRepo;
 import data.DAO.HistVagaRepo;
-import data.VO.Cliente;
 import data.VO.HistVaga;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -50,8 +46,6 @@ public class CadHistVagasCtrl implements Initializable {
 	@FXML
 	private TextField txtNome;
 	@FXML
-	private ChoiceBox cbCor;
-	@FXML
 	private ChoiceBox cbSituacao;
 
 	private ObservableList<HistVaga> data;
@@ -86,23 +80,23 @@ public class CadHistVagasCtrl implements Initializable {
 
 		popUp.setOnHiding(new EventHandler<WindowEvent>() {
 
-	         @Override
-	         public void handle(WindowEvent event) {
-	             Platform.runLater(new Runnable() {
+			@Override
+			public void handle(WindowEvent event) {
+				Platform.runLater(new Runnable() {
 
-	                 @Override
-	                 public void run() {
-	                	 try {
+					@Override
+					public void run() {
+						try {
 							Pesquisar();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-	                 }
-	             });
-	         }
-	     });
-		
+					}
+				});
+			}
+		});
+
 		popUp.show();
 	}
 
@@ -123,23 +117,23 @@ public class CadHistVagasCtrl implements Initializable {
 
 		popUp.setOnHiding(new EventHandler<WindowEvent>() {
 
-	         @Override
-	         public void handle(WindowEvent event) {
-	             Platform.runLater(new Runnable() {
+			@Override
+			public void handle(WindowEvent event) {
+				Platform.runLater(new Runnable() {
 
-	                 @Override
-	                 public void run() {
-	                	 try {
+					@Override
+					public void run() {
+						try {
 							Pesquisar();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-	                 }
-	             });
-	         }
-	     });
-		
+					}
+				});
+			}
+		});
+
 		popUp.show();
 	}
 
@@ -159,6 +153,9 @@ public class CadHistVagasCtrl implements Initializable {
 
 	@SuppressWarnings("unchecked")
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		cbSituacao.getItems().add("Ativo");
+		cbSituacao.getItems().add("Inativo");		
+		
 		tabela.getColumns().clear();
 
 		colNome = new TableColumn<HistVaga, String>("Cliente");
@@ -166,23 +163,22 @@ public class CadHistVagasCtrl implements Initializable {
 		colNumero = new TableColumn<HistVaga, String>("IdVaga");
 		colDataPagamento = new TableColumn<HistVaga, String>("DataPagamento");
 		colSituacao = new TableColumn<HistVaga, Boolean>("IsActive");
-		
+
 		colNome.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("Cliente"));
 		colVeiculo.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("IdVeiculo"));
 		colNumero.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("IdVaga"));
 		colDataPagamento.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("DataPagamento"));
-		//colSituacao.setCellValueFactory(new PropertyValueFactory<HistVaga, Boolean>("IsActive"));		
-		
+
 		TableColumn<HistVaga, Boolean> colSituacao = new TableColumn<HistVaga, Boolean>("IsActive");
 		colSituacao.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getIsActive()));
 		colSituacao.setCellFactory(col -> new TableCell<HistVaga, Boolean>() {
-		    @Override
-		    protected void updateItem(Boolean item, boolean empty) {
-		        super.updateItem(item, empty) ;
+			@Override
+			protected void updateItem(Boolean item, boolean empty) {
+				super.updateItem(item, empty);
 		        setText(empty ? null : item ? "Ativo" : "Inativo" );
-		    }
+			}
 		});
-		
+
 		colEdit = new TableColumn("Editar");
 		Callback<TableColumn<HistVaga, Void>, TableCell<HistVaga, Void>> cellFactoryEdit = new Callback<TableColumn<HistVaga, Void>, TableCell<HistVaga, Void>>() {
 			@Override
@@ -231,7 +227,7 @@ public class CadHistVagasCtrl implements Initializable {
 
 							if (dialogResult == JOptionPane.YES_OPTION) {
 								HistVaga p = getTableView().getItems().get(getIndex());
-								p.setIsActive(false);
+								p.setIsActive(!p.getIsActive());
 								new HistVagaRepo().update(p);
 							}
 
@@ -254,7 +250,8 @@ public class CadHistVagasCtrl implements Initializable {
 
 		colEdit.setCellFactory(cellFactoryEdit);
 		colDelete.setCellFactory(cellFactoryDelete);
-		tabela.getColumns().addAll(colNome, colVeiculo, colNumero, colDataPagamento, colSituacao, /*colEdit,*/ colDelete);
+		tabela.getColumns().addAll(colNome, colVeiculo, colNumero, colDataPagamento, colSituacao,
+				/* colEdit, */ colDelete);
 
 		data = FXCollections.observableArrayList();
 		tabela.setItems(data);

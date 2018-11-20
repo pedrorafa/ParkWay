@@ -22,12 +22,11 @@ public class PagamentoRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("exec sp_tbPagamento_I ?,?,?,?,?" + "INSERT INTO TBPAGAMENTO "
-							+ "(DATA, IdVaga, IdVeiculo, IdFormaPagamento, Valor)" + " VALUES (?,?,?,?,?)");
+					.prepareStatement("exec sp_tbPagamento_I ?,?,?,?,?");
 
-			preparedStatement.setDate(1, p.getData());
+			preparedStatement.setString(1, p.getIdVeiculo());
 			preparedStatement.setInt(2, p.getIdVaga());
-			preparedStatement.setString(3, p.getIdVeiculo());
+			preparedStatement.setDate(3, p.getData());
 			preparedStatement.setInt(4, p.getIdFormaPagamento());
 			preparedStatement.setDouble(5, p.getValor());
 
@@ -43,14 +42,13 @@ public class PagamentoRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("exec sp_tbPagamento_U ?,?,?,?,?" + "UPDATE TBPAGAMENTO SET "
-							+ "Valor = ?, IdFormaPagamento = ?" + "where DATA = ? AND IdVaga = ? AND IdVeiculo = ?");
+					.prepareStatement("exec sp_tbPagamento_U ?,?,?,?,?");
 
-			preparedStatement.setDouble(1, p.getValor());
-			preparedStatement.setInt(2, p.getIdFormaPagamento());
+			preparedStatement.setString(1, p.getIdVeiculo());
+			preparedStatement.setInt(2, p.getIdVaga());
 			preparedStatement.setDate(3, p.getData());
-			preparedStatement.setInt(4, p.getIdVaga());
-			preparedStatement.setString(5, p.getIdVeiculo());
+			preparedStatement.setInt(4, p.getIdFormaPagamento());
+			preparedStatement.setDouble(5, p.getValor());
 
 			preparedStatement.execute();
 
@@ -66,9 +64,9 @@ public class PagamentoRepo {
 					.prepareStatement("exec sp_tbPagamento_D ?,?,?"	+ "DELETE FROM TBPAGAMENTO " 
 							+ "WHERE DATA = ? AND IdVaga = ? AND IdVeiculo = ?");
 
-			preparedStatement.setDate(1, p.getData());
-			preparedStatement.setInt(2, p.getIdVaga());
-			preparedStatement.setString(3, p.getIdVeiculo());
+			preparedStatement.setInt(1, p.getIdVaga());
+			preparedStatement.setString(2, p.getIdVeiculo());
+			preparedStatement.setDate(3, p.getData());
 
 			preparedStatement.execute();
 
@@ -81,7 +79,10 @@ public class PagamentoRepo {
 
 		PreparedStatement stmt = connection.prepareStatement(
 				"select * from TBPAGAMENTO "
-				+ "WHERE IdVaga = ? AND IdVeiculo = ?");
+				+ "WHERE numero = ? AND placa = ?");
+		
+		stmt.setInt(1, p.getIdVaga());
+		stmt.setString(2, p.getIdVeiculo());
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		Pagamento item = null;
@@ -90,7 +91,9 @@ public class PagamentoRepo {
 
 			if (rs.next()) {
 				item = new Pagamento();
-				item.setIdVaga(rs.getInt(""));
+				item.setIdVaga(rs.getInt("numero"));
+				item.setIdVeiculo(rs.getString("placa"));
+				item.setData(rs.getDate("data"));
 			}
 
 		} catch (Exception e) {

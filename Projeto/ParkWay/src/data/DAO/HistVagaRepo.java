@@ -81,7 +81,11 @@ public class HistVagaRepo {
 		PreparedStatement stmt = connection.prepareStatement(
 				"select v.*, c.nome, c.cpf from TBHISTVAGA  v inner join tbveiculo vei on v.placa = vei.placa" + 
 				 " inner join tbcliente c on vei.cpfCliente = c.cpf"+
-				 " WHERE IdVeiculo = ? AND IdVaga = ?");
+				 " WHERE v.placa = ? AND v.numero = ?");
+		
+		stmt.setString(1, p.getIdVeiculo());
+		stmt.setInt(2, p.getIdVaga());
+		
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		HistVaga item = null;

@@ -1,5 +1,6 @@
 package application.histVagas;
 
+import java.awt.HeadlessException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ public class AddHistVagasCtrl implements Initializable {
 	@FXML
 	private DatePicker dtDataPagamento;
 
-	public void Salvar(){
+	public void Salvar() throws HeadlessException, SQLException{
 		HistVagaRepo repo = new HistVagaRepo();
 		
 		HistVaga p = new HistVaga();
@@ -42,8 +43,11 @@ public class AddHistVagasCtrl implements Initializable {
 		p.setDataFim(null);
 		p.setDataPagamento(java.util.Date.from(dtDataPagamento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 		p.setIsActive(true);
-		
-		repo.add(p);
+
+		if(repo.get(p) == null)
+			repo.add(p);
+		else
+			JOptionPane.showMessageDialog(null,"Já existe associção de vaga!");
 		
 		Stage tmp = (Stage)cbVaga.getScene().getWindow();
 		tmp.close();
