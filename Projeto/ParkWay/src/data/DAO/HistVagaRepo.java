@@ -24,8 +24,7 @@ public class HistVagaRepo {
 
 		try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbHistVaga_I ?,?,?,?");
+			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbHistVaga_I ?,?,?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
 			preparedStatement.setInt(2, p.getIdVaga());
@@ -45,12 +44,11 @@ public class HistVagaRepo {
 	public void update(HistVaga p) {
 		try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbHistVaga_U ?,?,?,?");
+			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbHistVaga_U ?,?,?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
 			preparedStatement.setInt(2, p.getIdVaga());
-			preparedStatement.setDate(3, (Date)p.getDataPagamento());
+			preparedStatement.setDate(3, (Date) p.getDataPagamento());
 			preparedStatement.setBoolean(4, p.getIsActive());
 
 			preparedStatement.execute();
@@ -63,8 +61,7 @@ public class HistVagaRepo {
 	public void del(HistVaga p) {
 		try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbHistVaga_D ?,?");
+			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbHistVaga_D ?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
 			preparedStatement.setInt(2, p.getIdVaga());
@@ -79,13 +76,12 @@ public class HistVagaRepo {
 	public HistVaga get(HistVaga p) throws SQLException {
 
 		PreparedStatement stmt = connection.prepareStatement(
-				"select v.*, c.nome, c.cpf from TBHISTVAGA  v inner join tbveiculo vei on v.placa = vei.placa" + 
-				 " inner join tbcliente c on vei.cpfCliente = c.cpf"+
-				 " WHERE v.placa = ? AND v.numero = ?");
-		
+				"select v.*, c.nome, c.cpf from TBHISTVAGA  v inner join tbveiculo vei on v.placa = vei.placa"
+						+ " inner join tbcliente c on vei.cpfCliente = c.cpf" + " WHERE v.placa = ? AND v.numero = ?");
+
 		stmt.setString(1, p.getIdVeiculo());
 		stmt.setInt(2, p.getIdVaga());
-		
+
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		HistVaga item = null;
@@ -98,7 +94,7 @@ public class HistVagaRepo {
 				item.setIdVeiculo(rs.getString("placa"));
 				item.setDataPagamento(rs.getDate("dataPgto"));
 				item.setIsActive(rs.getBoolean("ativo"));
-				
+
 				item.setCliente(new Cliente());
 				item.getCliente().setNome(rs.getString("nome"));
 				item.getCliente().setCpf(rs.getString("cpf"));
@@ -122,8 +118,14 @@ public class HistVagaRepo {
 	public ArrayList<HistVaga> list(HistVaga p) throws SQLException {
 		PreparedStatement stmt = connection.prepareStatement(
 				"select v.*, c.nome, c.cpf from TBHISTVAGA v inner join tbveiculo vei on v.placa = vei.placa"
-				+ " inner join tbcliente c on vei.cpfCliente = c.cpf");
-		
+						+ " inner join tbcliente c on vei.cpfCliente = c.cpf"
+						+ " where (v.placa LIKE ?) AND (c.nome LIKE ?) AND (vei.modelo LIKE ?) AND (v.ativo = ?)");
+
+		stmt.setString(1, "%" + p.getIdVeiculo() + "%");
+		stmt.setString(2, "%" + p.getCliente().getNome() + "%");
+		stmt.setString(3, "%" + p.getVeiculo().getModelo() + "%");
+		stmt.setBoolean(4, p.getIsActive());
+
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		ArrayList<HistVaga> list = new ArrayList<HistVaga>();
@@ -140,7 +142,7 @@ public class HistVagaRepo {
 				item.setCliente(new Cliente());
 				item.getCliente().setNome(rs.getString("nome"));
 				item.getCliente().setCpf(rs.getString("cpf"));
-				
+
 				list.add(item);
 			}
 

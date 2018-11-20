@@ -9,7 +9,9 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import data.DAO.HistVagaRepo;
+import data.VO.Cliente;
 import data.VO.HistVaga;
+import data.VO.Veiculo;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -141,8 +143,20 @@ public class CadHistVagasCtrl implements Initializable {
 		HistVagaRepo repo = new HistVagaRepo();
 
 		try {
+			HistVaga filter = new HistVaga();
+			
+			filter.setIdVeiculo(txtPlaca.getText());
+			//filter.setIdVaga(txtNumero.getText()));
+			Cliente c = new Cliente();
+			c.setNome(txtNome.getText());
+			filter.setCliente(c);
+			Veiculo v = new Veiculo();
+			v.setModelo(txtModelo.getText());
+			filter.setVeiculo(v);
+			filter.setIsActive(cbSituacao.getSelectionModel().getSelectedIndex() == 0);
+			
 			data.clear();
-			List<HistVaga> a = repo.list(new HistVaga());
+			List<HistVaga> a = repo.list(filter);
 			data.addAll(a);
 
 		} catch (SQLException e) {
@@ -155,6 +169,7 @@ public class CadHistVagasCtrl implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		cbSituacao.getItems().add("Ativo");
 		cbSituacao.getItems().add("Inativo");		
+		cbSituacao.getSelectionModel().select(0);
 		
 		tabela.getColumns().clear();
 
@@ -250,9 +265,9 @@ public class CadHistVagasCtrl implements Initializable {
 
 		colEdit.setCellFactory(cellFactoryEdit);
 		colDelete.setCellFactory(cellFactoryDelete);
-		tabela.getColumns().addAll(colNome, colVeiculo, colNumero, colDataPagamento, colSituacao,
-				/* colEdit, */ colDelete);
+		tabela.getColumns().addAll(colNome, colVeiculo, colNumero, colDataPagamento, colSituacao,colDelete);
 
+		
 		data = FXCollections.observableArrayList();
 		tabela.setItems(data);
 

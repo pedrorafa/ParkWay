@@ -44,10 +44,12 @@ public class AddHistVagasCtrl implements Initializable {
 		p.setDataPagamento(java.util.Date.from(dtDataPagamento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 		p.setIsActive(true);
 
-		if(repo.get(p) == null)
-			repo.add(p);
+		HistVaga test = repo.get(p);
+		
+		if(test != null && test.getIsActive())
+			JOptionPane.showMessageDialog(null,"Já existe associção de vaga e ativa!");			
 		else
-			JOptionPane.showMessageDialog(null,"Já existe associção de vaga!");
+			repo.add(p);
 		
 		Stage tmp = (Stage)cbVaga.getScene().getWindow();
 		tmp.close();

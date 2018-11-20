@@ -59,6 +59,8 @@ public class CadClientesCtrl implements Initializable {
 
 	private TableColumn<Cliente, String> colCpf;
 	private TableColumn<Cliente, String> colNome;
+	private TableColumn<Cliente, String> colContato;
+	private TableColumn<Cliente, String> colRua;
 	private TableColumn colEdit;
 	private TableColumn colDelete;
 
@@ -142,8 +144,21 @@ public class CadClientesCtrl implements Initializable {
 		ClienteRepo repo = new ClienteRepo();
 
 		try {
+			Cliente filter = new Cliente();
+			
+			filter.setCpf(txtCpf.getText());
+			filter.setNome(txtNome.getText());
+			
+			Endereco eFilter = new Endereco();
+			
+			eFilter.setCep(txtCep.getText());
+			eFilter.setLogradouro(txtRua.getText());
+			eFilter.setNumero(txtNumero.getText());
+			
+			filter.setEndereco(eFilter);
+			
 			data.clear();
-			List<Cliente> a = repo.list(new Cliente());
+			List<Cliente> a = repo.list(filter);
 			data.addAll(a);
 
 		} catch (SQLException e) { // TODO Auto-generated catch block
@@ -157,9 +172,11 @@ public class CadClientesCtrl implements Initializable {
 
 		colNome = new TableColumn<Cliente, String>("Nome");
 		colCpf = new TableColumn<Cliente, String>("Cpf");
+		colContato = new TableColumn<Cliente, String>("Email");
 
 		colNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
 		colCpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Cpf"));
+		colContato.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Email"));
 
 		colEdit = new TableColumn("Editar");
 		Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>> cellFactoryEdit = new Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>>() {
@@ -230,7 +247,7 @@ public class CadClientesCtrl implements Initializable {
 
 		colEdit.setCellFactory(cellFactoryEdit);
 		colDelete.setCellFactory(cellFactoryDelete);
-		tabela.getColumns().addAll(colNome, colCpf, colEdit, colDelete);
+		tabela.getColumns().addAll(colNome, colCpf,colContato, colEdit, colDelete);
 
 		data = FXCollections.observableArrayList();
 		tabela.setItems(data);

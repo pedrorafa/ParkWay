@@ -23,6 +23,8 @@ public class EditClientesCtrl {
 	@FXML
 	private TextField txtCpf;
 	@FXML
+	private TextField txtEmail;
+	@FXML
 	private TextField txtCep;
 	@FXML
 	private TextField txtRua;
@@ -41,13 +43,17 @@ public class EditClientesCtrl {
 		p.setNome(txtNome.getText());
 		p.setCpf(txtCpf.getText());
 		
+		p.setNome(txtNome.getText());
+		p.setCpf(txtCpf.getText());
+		p.setEmail(txtEmail.getText());
+		
 		Endereco e = new Endereco();
 		
 		e.setLogradouro(txtRua.getText());
 		e.setNumero(txtNumero.getText());
 		e.setCep(txtCep.getText());
-		e.setCidade(String.valueOf(cbCidade.getSelectionModel().getSelectedIndex()));
-		e.setEstado(String.valueOf(cbEstado.getSelectionModel().getSelectedIndex()));
+		//e.setCidade(String.valueOf(cbCidade.getSelectionModel().getSelectedIndex()));
+		//e.setEstado(String.valueOf(cbEstado.getSelectionModel().getSelectedIndex()));
 		
 		p.setEndereco(e);
 		

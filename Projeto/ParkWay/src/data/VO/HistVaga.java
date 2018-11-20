@@ -14,6 +14,17 @@ public class HistVaga {
 	Cliente Cliente;
 	Veiculo Veiculo;
 	
+	public HistVaga() {
+		IdVeiculo = "";
+		IdVaga = 0;
+		// TODO Auto-generated constructor stub
+		Cliente = new Cliente();
+		Veiculo = new Veiculo();
+		Cliente.Nome = "";
+		Veiculo.Modelo = "";
+		IsActive = true;
+	}
+	
 	public Cliente getCliente() {
 		return Cliente;
 	}

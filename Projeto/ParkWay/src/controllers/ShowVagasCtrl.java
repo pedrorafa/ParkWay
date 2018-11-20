@@ -44,16 +44,23 @@ public class ShowVagasCtrl implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		data = FXCollections.observableArrayList();
+		try {
+			Pesquisar();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void loadScreen() throws IOException {
+		PagamentoRepo pagRepo = new PagamentoRepo();
+
 		FlowPane flowpane = new FlowPane();
 		flowpane.setHgap(10);
 		flowpane.setVgap(10);
 
 		try {
-
-			PagamentoRepo pagRepo = new PagamentoRepo();
-
-			data = FXCollections.observableArrayList();
-			Pesquisar();
 
 			Background okBack = new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY));
 			Background dangerBack = new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY));
@@ -62,6 +69,10 @@ public class ShowVagasCtrl implements Initializable {
 				if (i.getIsActive()) {
 					VBox vaga = new VBox();
 
+					Label clienteVaga = new Label(i.getCliente().getNome());
+					clienteVaga.setTextFill(Color.WHITE);
+					clienteVaga.setTextAlignment(TextAlignment.CENTER);
+					
 					Label numVaga = new Label("Nº " + i.getIdVaga());
 					numVaga.setTextFill(Color.WHITE);
 					numVaga.setTextAlignment(TextAlignment.CENTER);
@@ -74,11 +85,11 @@ public class ShowVagasCtrl implements Initializable {
 					dataVaga.setTextFill(Color.WHITE);
 					dataVaga.setTextAlignment(TextAlignment.CENTER);
 
-
+					vaga.getChildren().add(clienteVaga);
 					vaga.getChildren().add(numVaga);
 					vaga.getChildren().add(tamVaga);
 					vaga.getChildren().add(dataVaga);
-					
+
 					Pagamento params = new Pagamento();
 					params.setIdVaga(i.getIdVaga());
 					params.setIdVeiculo(i.getIdVeiculo());
@@ -90,10 +101,10 @@ public class ShowVagasCtrl implements Initializable {
 						Label dataPagaVaga = new Label();
 						dataPagaVaga.setTextFill(Color.WHITE);
 						dataPagaVaga.setTextAlignment(TextAlignment.CENTER);
-						
+
 						dataPagaVaga.setText("Efetuação: \r\n" + pag.getData());
 						vaga.getChildren().add(dataPagaVaga);
-						
+
 						vaga.setBackground(okBack);
 
 					} else {
@@ -106,13 +117,13 @@ public class ShowVagasCtrl implements Initializable {
 							@Override
 							public void handle(MouseEvent e) {
 								Pagamento novo = new Pagamento();
-								
+
 								novo.setData(new Date(0));
 								novo.setIdVaga(i.getIdVaga());
 								novo.setIdVeiculo(i.getIdVeiculo());
 								novo.setIdFormaPagamento(0);
-								novo.setValor(50);	
-																
+								novo.setValor(50);
+
 								try {
 									pagRepo.add(novo);
 									Pesquisar();
@@ -128,13 +139,9 @@ public class ShowVagasCtrl implements Initializable {
 					}
 					vaga.setPrefSize(100, 50);
 
-
 					flowpane.getChildren().add(vaga);
 				}
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -150,6 +157,7 @@ public class ShowVagasCtrl implements Initializable {
 			data.clear();
 			List<HistVaga> a = repo.list(new HistVaga());
 			data.addAll(a);
+			loadScreen();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

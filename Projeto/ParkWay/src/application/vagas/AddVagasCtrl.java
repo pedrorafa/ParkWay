@@ -36,6 +36,8 @@ public class AddVagasCtrl {
 		p.setNumero(Integer.valueOf(txtNumero.getText()));
 		p.setTamanho(Integer.valueOf(txtTamanho.getText()));
 		
+		repo.add(p);
+		
 		Stage tmp = (Stage)txtNumero.getScene().getWindow();
 		tmp.close();
 	}

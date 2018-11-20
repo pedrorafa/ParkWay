@@ -24,8 +24,8 @@ public class ClienteRepo {
 
 		try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbCliente_tbEndereco_I ?,?,?,?,?,?,?,?");
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("exec sp_tbCliente_tbEndereco_I ?,?,?,?,?,?,?,?");
 
 			preparedStatement.setString(1, p.getCpf());
 			preparedStatement.setString(2, p.getNome());
@@ -40,8 +40,9 @@ public class ClienteRepo {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.OK_OPTION);
+
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação", "Erro",
+					JOptionPane.OK_OPTION);
 		}
 
 	} // add
@@ -49,8 +50,8 @@ public class ClienteRepo {
 	public void update(Cliente p) {
 		try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbCliente_tbEndereco_U  ?,?,?,?,?,?,?,?");
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("exec sp_tbCliente_tbEndereco_U  ?,?,?,?,?,?,?,?");
 
 			preparedStatement.setString(1, p.getCpf());
 			preparedStatement.setString(2, p.getNome());
@@ -61,21 +62,20 @@ public class ClienteRepo {
 			preparedStatement.setString(7, p.getEndereco().getCidade());
 			preparedStatement.setString(8, p.getEndereco().getCep());
 
-
 			preparedStatement.execute();
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.OK_OPTION);
+
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação", "Erro",
+					JOptionPane.OK_OPTION);
 		}
 	}
 
 	public void del(Cliente p) {
 		try {
 
-			PreparedStatement preparedStatement = connection.prepareStatement(
-					"exec sp_tbCliente_tbEndereco_D ?");
+			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbCliente_tbEndereco_D ?");
 
 			preparedStatement.setString(1, p.getCpf());
 
@@ -83,19 +83,18 @@ public class ClienteRepo {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.OK_OPTION);
+
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação", "Erro",
+					JOptionPane.OK_OPTION);
 		}
 	}
 
 	public Cliente get(Cliente p) throws SQLException {
 
-		PreparedStatement stmt = connection.prepareStatement(
-				"select * from TBCLIENTE "
-				+ "WHERE CPF = ?");
+		PreparedStatement stmt = connection.prepareStatement("select * from TBCLIENTE " + "WHERE CPF = ?");
 
 		stmt.setString(1, p.getCpf());
-		
+
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		Cliente item = null;
@@ -112,8 +111,9 @@ public class ClienteRepo {
 
 			e.printStackTrace();
 
-			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.OK_OPTION);
-			
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação", "Erro",
+					JOptionPane.OK_OPTION);
+
 			return null;
 
 		} finally {
@@ -126,27 +126,38 @@ public class ClienteRepo {
 		return item;
 	}
 
-	public ArrayList<Cliente> list(Cliente p) throws SQLException {		
-		PreparedStatement stmt = connection.prepareStatement("select * from TBCLIENTE");
+	public ArrayList<Cliente> list(Cliente p) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement("select c.* from tbCliente c "
+				+ "inner join tbEndereco e on c.cpf = e.cpf " + "where (c.cpf LIKE ?) AND (c.nome LIKE ?) AND "
+				+ "(e.cep LIKE ?) AND (e.logradouro like ?) AND (e.numero LIKE ?)");
+
+		stmt.setString(1, "%" + p.getCpf() + "%");
+		stmt.setString(2, "%" + p.getNome() + "%");
+		stmt.setString(3, "%" + p.getEndereco().getCep() + "%");
+		stmt.setString(4, "%" + p.getEndereco().getLogradouro() + "%");
+		stmt.setString(5, "%" + p.getEndereco().getNumero() + "%");
+
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
 		ArrayList<Cliente> list = new ArrayList<Cliente>();
 
-		try {			
+		try {
 			while (rs.next()) {
 				Cliente item = new Cliente();
 				item.setCpf(rs.getString("cpf"));
 				item.setNome(rs.getString("nome"));
+				item.setEmail(rs.getString("contato"));
 
 				list.add(item);
 			}
 
 		} catch (Exception e) {
 
-			e.printStackTrace();			
+			e.printStackTrace();
 
-			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação","Erro", JOptionPane.WARNING_MESSAGE);
-			
+			JOptionPane.showMessageDialog(null, "Aconteceu um erro ao realizar operação", "Erro",
+					JOptionPane.WARNING_MESSAGE);
+
 			return null;
 
 		} finally {

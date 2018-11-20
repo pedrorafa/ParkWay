@@ -8,10 +8,6 @@
    <children>
       <TextField fx:id="txtNumero" layoutX="533.0" layoutY="122.0" prefHeight="25.0" prefWidth="94.0" />
       <Label layoutX="540.0" layoutY="105.0" text="Nº" />
-      <ChoiceBox fx:id="cbCidade" layoutX="346.0" layoutY="79.0" prefHeight="25.0" prefWidth="282.0" />
-      <Label layoutX="347.0" layoutY="62.0" text="Cidade" />
-      <Label layoutX="288.0" layoutY="62.0" text="Estado" />
-      <ChoiceBox fx:id="cbEstado" layoutX="288.0" layoutY="79.0" prefHeight="25.0" prefWidth="50.0" />
       <Label layoutX="15.0" layoutY="105.0" text="Logradouro" />
       <TextField fx:id="txtRua" layoutX="15.0" layoutY="122.0" prefHeight="25.0" prefWidth="503.0" />
       <TextField fx:id="txtCep" layoutX="15.0" layoutY="75.0" prefHeight="25.0" prefWidth="268.0" />
