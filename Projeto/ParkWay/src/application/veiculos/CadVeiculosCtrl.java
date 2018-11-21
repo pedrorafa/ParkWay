@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import data.DAO.ClienteRepo;
 import data.DAO.VeiculoRepo;
 import data.VO.Cliente;
 import data.VO.Veiculo;
@@ -23,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,7 +61,7 @@ public class CadVeiculosCtrl implements Initializable{
 	private TableColumn colEdit;
 	private TableColumn colDelete;
 
-	public void ShowAdd() throws IOException {
+	public void ShowAdd() throws IOException, SQLException {		
 		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("AddVeiculos.fxml"));
 		AnchorPane pnlOne = loader.load();
 		AddVeiculosCtrl controller = loader.getController();
@@ -138,8 +140,15 @@ public class CadVeiculosCtrl implements Initializable{
 		VeiculoRepo repo = new VeiculoRepo();
 
 		try {
+			Veiculo filter = new Veiculo();
+			Cliente c = cbCliente.selectionModelProperty().getValue().getSelectedItem();
+			filter.setIdCliente(c != null ? c.getCpf() : "");
+			filter.setIdCor(cbCor.getSelectionModel().getSelectedIndex());
+			filter.setModelo(txtModelo.getText());
+			filter.setPlaca(txtPlaca.getText());
+			
 			data.clear();
-			List<Veiculo> a = repo.list(new Veiculo());
+			List<Veiculo> a = repo.list(filter);
 			data.addAll(a);
 
 		} catch (SQLException e) {
@@ -150,17 +159,26 @@ public class CadVeiculosCtrl implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		try {
+			cbCliente.setItems(FXCollections.observableArrayList(new ClienteRepo().list(new Cliente())));
+			cbCor.setItems(FXCollections.observableArrayList("Vermelho","Preto","Verde"));
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		tabela.getColumns().clear();
 
-		colCliente = new TableColumn<Veiculo, String>("IdCliente");
+		colCliente = new TableColumn<Veiculo, String>("Cliente");
 		colModelo = new TableColumn<Veiculo, String>("Modelo");
 		colPlaca = new TableColumn<Veiculo, String>("Placa");
 		colCor = new TableColumn<Veiculo, Double>("IdCor");		
 		
 		colCliente.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("IdCliente"));
 		colModelo.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("Modelo"));
-		colPlaca.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("Placa"));
+		colPlaca.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("Placa"));		
 		colCor.setCellValueFactory(new PropertyValueFactory<Veiculo, Double>("IdCor"));
+
 		
 		colEdit = new TableColumn("Editar");
 		Callback<TableColumn<Veiculo, Void>, TableCell<Veiculo, Void>> cellFactoryEdit = new Callback<TableColumn<Veiculo, Void>, TableCell<Veiculo, Void>>() {
@@ -231,7 +249,7 @@ public class CadVeiculosCtrl implements Initializable{
 
 		colEdit.setCellFactory(cellFactoryEdit);
 		colDelete.setCellFactory(cellFactoryDelete);
-		tabela.getColumns().addAll(colCliente, colModelo, colPlaca, colCor, /*colEdit,*/ colDelete);
+		tabela.getColumns().addAll(colCliente, colModelo, colPlaca, /*colCor,*/ colDelete);
 
 		data = FXCollections.observableArrayList();
 		tabela.setItems(data);

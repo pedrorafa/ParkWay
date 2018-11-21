@@ -174,13 +174,13 @@ public class CadHistVagasCtrl implements Initializable {
 		tabela.getColumns().clear();
 
 		colNome = new TableColumn<HistVaga, String>("Cliente");
-		colVeiculo = new TableColumn<HistVaga, String>("IdVeiculo");
-		colNumero = new TableColumn<HistVaga, String>("IdVaga");
+		colVeiculo = new TableColumn<HistVaga, String>("Veiculo");
+		colNumero = new TableColumn<HistVaga, String>("Vaga");
 		colDataPagamento = new TableColumn<HistVaga, String>("DataPagamento");
 		colSituacao = new TableColumn<HistVaga, Boolean>("IsActive");
 
 		colNome.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("Cliente"));
-		colVeiculo.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("IdVeiculo"));
+		colVeiculo.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("Veiculo"));
 		colNumero.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("IdVaga"));
 		colDataPagamento.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("DataPagamento"));
 

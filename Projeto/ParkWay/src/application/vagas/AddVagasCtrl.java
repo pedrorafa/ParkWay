@@ -33,8 +33,8 @@ public class AddVagasCtrl {
 		
 		Vaga p = new Vaga();
 		
-		p.setNumero(Integer.valueOf(txtNumero.getText()));
-		p.setTamanho(Integer.valueOf(txtTamanho.getText()));
+		p.setNumero(txtNumero.getText());
+		p.setTamanho(txtTamanho.getText());
 		
 		repo.add(p);
 		

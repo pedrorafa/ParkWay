@@ -41,7 +41,7 @@ public class CadVagasCtrl implements Initializable {
 	@FXML
 	private TextField txtNumero;
 	@FXML
-	private TextField txtNTamanho;
+	private TextField txtTamanho;
     
     private ObservableList<Vaga> data;
 
@@ -132,8 +132,13 @@ public class CadVagasCtrl implements Initializable {
 		VagaRepo repo = new VagaRepo();
 
 		try {
+			Vaga filter = new Vaga();
+			
+			filter.setNumero(txtNumero.getText());
+			filter.setTamanho(txtTamanho.getText());
+			
 			data.clear();
-			List<Vaga> a = repo.list(new Vaga());
+			List<Vaga> a = repo.list(filter);
 			data.addAll(a);
 
 		} catch (SQLException e) {

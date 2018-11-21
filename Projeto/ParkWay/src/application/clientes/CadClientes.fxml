@@ -14,10 +14,10 @@
       <Label layoutX="357.0" layoutY="6.0" text="CPF" />
       <Label layoutX="14.0" layoutY="54.0" text="CEP" />
       <TextField fx:id="txtCep" layoutX="14.0" layoutY="71.0" prefHeight="25.0" prefWidth="131.0" />
-      <TextField fx:id="txtRua" layoutX="14.0" layoutY="118.0" prefHeight="25.0" prefWidth="389.0" />
-      <Label layoutX="14.0" layoutY="101.0" text="Logradouro" />
-      <Label layoutX="419.0" layoutY="103.0" text="Nº" />
-      <TextField fx:id="txtNumero" layoutX="419.0" layoutY="118.0" prefHeight="25.0" prefWidth="94.0" />
+      <TextField fx:id="txtRua" layoutX="153.0" layoutY="71.0" prefHeight="25.0" prefWidth="389.0" />
+      <Label layoutX="153.0" layoutY="54.0" text="Logradouro" />
+      <Label layoutX="552.0" layoutY="56.0" text="Nº" />
+      <TextField fx:id="txtNumero" layoutX="552.0" layoutY="71.0" prefHeight="25.0" prefWidth="76.0" />
       <Button layoutX="526.0" layoutY="118.0" mnemonicParsing="false" onAction="#ShowAdd" prefHeight="25.0" prefWidth="100.0" text="Adicionar" />
    </children>
 </AnchorPane>

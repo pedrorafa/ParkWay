@@ -56,7 +56,9 @@ public class EditHistVagasCtrl {
 			cbVaga.getItems().addAll(new VagaRepo().list(new Vaga()));
 			cbVeiculo.getItems().addAll(new VeiculoRepo().list(new Veiculo()));			
 
-			cbVaga.getSelectionModel().select(dados.getIdVaga());
+			Vaga p = new Vaga();
+			p.setNumero(dados.getIdVaga());
+			cbVaga.getSelectionModel().select(new VagaRepo().get(p));
 			
 			cbVaga.showingProperty();
 			cbVeiculo.showingProperty();

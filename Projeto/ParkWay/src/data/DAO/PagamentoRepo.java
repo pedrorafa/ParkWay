@@ -25,7 +25,7 @@ public class PagamentoRepo {
 					.prepareStatement("exec sp_tbPagamento_I ?,?,?,?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
-			preparedStatement.setInt(2, p.getIdVaga());
+			preparedStatement.setString(2, p.getIdVaga());
 			preparedStatement.setDate(3, p.getData());
 			preparedStatement.setInt(4, p.getIdFormaPagamento());
 			preparedStatement.setDouble(5, p.getValor());
@@ -45,7 +45,7 @@ public class PagamentoRepo {
 					.prepareStatement("exec sp_tbPagamento_U ?,?,?,?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
-			preparedStatement.setInt(2, p.getIdVaga());
+			preparedStatement.setString(2, p.getIdVaga());
 			preparedStatement.setDate(3, p.getData());
 			preparedStatement.setInt(4, p.getIdFormaPagamento());
 			preparedStatement.setDouble(5, p.getValor());
@@ -64,7 +64,7 @@ public class PagamentoRepo {
 					.prepareStatement("exec sp_tbPagamento_D ?,?,?"	+ "DELETE FROM TBPAGAMENTO " 
 							+ "WHERE DATA = ? AND IdVaga = ? AND IdVeiculo = ?");
 
-			preparedStatement.setInt(1, p.getIdVaga());
+			preparedStatement.setString(1, p.getIdVaga());
 			preparedStatement.setString(2, p.getIdVeiculo());
 			preparedStatement.setDate(3, p.getData());
 
@@ -81,7 +81,7 @@ public class PagamentoRepo {
 				"select * from TBPAGAMENTO "
 				+ "WHERE numero = ? AND placa = ?");
 		
-		stmt.setInt(1, p.getIdVaga());
+		stmt.setString(1, p.getIdVaga());
 		stmt.setString(2, p.getIdVeiculo());
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
@@ -91,7 +91,7 @@ public class PagamentoRepo {
 
 			if (rs.next()) {
 				item = new Pagamento();
-				item.setIdVaga(rs.getInt("numero"));
+				item.setIdVaga(rs.getString("numero"));
 				item.setIdVeiculo(rs.getString("placa"));
 				item.setData(rs.getDate("data"));
 			}
@@ -121,7 +121,7 @@ public class PagamentoRepo {
 
 			while (rs.next()) {
 				Pagamento item = new Pagamento();
-				item.setIdVaga(rs.getInt(""));
+				item.setIdVaga(rs.getString(""));
 
 				list.add(item);
 			}

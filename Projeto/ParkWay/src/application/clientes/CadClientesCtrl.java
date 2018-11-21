@@ -172,7 +172,7 @@ public class CadClientesCtrl implements Initializable {
 
 		colNome = new TableColumn<Cliente, String>("Nome");
 		colCpf = new TableColumn<Cliente, String>("Cpf");
-		colContato = new TableColumn<Cliente, String>("Email");
+		colContato = new TableColumn<Cliente, String>("Contato");
 
 		colNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
 		colCpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Cpf"));

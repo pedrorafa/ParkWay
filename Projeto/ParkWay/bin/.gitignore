@@ -1,3 +1,10 @@
+/.classpath
 /application/
+/mssql-jdbc-7.0.0.jre8.jar
+/reports/
+/.project
+/.settings/
+/build.fxbuild
 /controllers/
 /data/
+/sql/

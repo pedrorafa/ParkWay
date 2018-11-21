@@ -3,16 +3,16 @@ package data.VO;
 import java.sql.Date;
 
 public class Pagamento {
-	int IdVaga;
+	String IdVaga;
 	String IdVeiculo;
 	Date Data;
 	int IdFormaPagamento;
 	double Valor;
 	
-	public int getIdVaga() {
+	public String getIdVaga() {
 		return IdVaga;
 	}
-	public void setIdVaga(int idVaga) {
+	public void setIdVaga(String idVaga) {
 		IdVaga = idVaga;
 	}
 	public String getIdVeiculo() {

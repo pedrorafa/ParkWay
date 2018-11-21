@@ -7,6 +7,14 @@ public class Veiculo {
 	String Placa;
 	String Modelo;	
 	
+	public Veiculo() {
+		// TODO Auto-generated constructor stub
+		IdCliente = "";
+		IdCor = -1;
+		Modelo = "";
+		Placa = "";
+	}
+	
 	public String getIdCliente() {
 		return IdCliente;
 	}

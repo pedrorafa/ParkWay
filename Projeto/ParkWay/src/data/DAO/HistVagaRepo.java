@@ -27,7 +27,7 @@ public class HistVagaRepo {
 			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbHistVaga_I ?,?,?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
-			preparedStatement.setInt(2, p.getIdVaga());
+			preparedStatement.setString(2, p.getIdVaga());
 			Date date = new Date(0);
 			date.from(p.getDataPagamento().toInstant());
 			preparedStatement.setDate(3, date);
@@ -47,7 +47,7 @@ public class HistVagaRepo {
 			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbHistVaga_U ?,?,?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
-			preparedStatement.setInt(2, p.getIdVaga());
+			preparedStatement.setString(2, p.getIdVaga());
 			preparedStatement.setDate(3, (Date) p.getDataPagamento());
 			preparedStatement.setBoolean(4, p.getIsActive());
 
@@ -64,7 +64,7 @@ public class HistVagaRepo {
 			PreparedStatement preparedStatement = connection.prepareStatement("exec sp_tbHistVaga_D ?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
-			preparedStatement.setInt(2, p.getIdVaga());
+			preparedStatement.setString(2, p.getIdVaga());
 
 			preparedStatement.execute();
 
@@ -80,7 +80,7 @@ public class HistVagaRepo {
 						+ " inner join tbcliente c on vei.cpfCliente = c.cpf" + " WHERE v.placa = ? AND v.numero = ?");
 
 		stmt.setString(1, p.getIdVeiculo());
-		stmt.setInt(2, p.getIdVaga());
+		stmt.setString(2, p.getIdVaga());
 
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
@@ -90,7 +90,7 @@ public class HistVagaRepo {
 
 			if (rs.next()) {
 				item = new HistVaga();
-				item.setIdVaga(rs.getInt("numero"));
+				item.setIdVaga(rs.getString("numero"));
 				item.setIdVeiculo(rs.getString("placa"));
 				item.setDataPagamento(rs.getDate("dataPgto"));
 				item.setIsActive(rs.getBoolean("ativo"));
@@ -134,7 +134,7 @@ public class HistVagaRepo {
 
 			while (rs.next()) {
 				HistVaga item = new HistVaga();
-				item.setIdVaga(rs.getInt("numero"));
+				item.setIdVaga(rs.getString("numero"));
 				item.setIdVeiculo(rs.getString("placa"));
 				item.setDataPagamento(rs.getDate("dataPgto"));
 				item.setIsActive(rs.getBoolean("ativo"));

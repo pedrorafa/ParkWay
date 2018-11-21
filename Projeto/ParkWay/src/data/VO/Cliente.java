@@ -12,6 +12,14 @@ public class Cliente {
 	Endereco Endereco;
 	
 	public Cliente() {
+		Cpf = "";
+		Nome = "";
+		Email = "";
+		
+		Endereco = new Endereco();
+		Endereco.cep = "";
+		Endereco.logradouro = "";
+		Endereco.numero = "";
 	}
 	
 	public String  getCpf() {

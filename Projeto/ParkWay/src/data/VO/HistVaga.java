@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class HistVaga {
 	String IdVeiculo;
-	int IdVaga;
+	String IdVaga;
 	Date DataInicio;
 	Date DataFim;
 	Date DataPagamento;
@@ -16,7 +16,7 @@ public class HistVaga {
 	
 	public HistVaga() {
 		IdVeiculo = "";
-		IdVaga = 0;
+		IdVaga = "";
 		// TODO Auto-generated constructor stub
 		Cliente = new Cliente();
 		Veiculo = new Veiculo();
@@ -53,10 +53,10 @@ public class HistVaga {
 	public void setIdVeiculo(String idVeiculo) {
 		IdVeiculo = idVeiculo;
 	}
-	public int getIdVaga() {
+	public String getIdVaga() {
 		return IdVaga;
 	}
-	public void setIdVaga(int idVaga) {
+	public void setIdVaga(String idVaga) {
 		IdVaga = idVaga;
 	}
 	public Date getDataInicio() {

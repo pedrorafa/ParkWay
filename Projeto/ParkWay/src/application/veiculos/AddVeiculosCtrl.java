@@ -53,7 +53,7 @@ public class AddVeiculosCtrl implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {		
 		try {
-			cbCliente.setItems(FXCollections.observableArrayList(new ClienteRepo().list(null)));
+			cbCliente.setItems(FXCollections.observableArrayList(new ClienteRepo().list(new Cliente())));
 			cbCor.setItems(FXCollections.observableArrayList("Vermelho","Preto","Verde"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
