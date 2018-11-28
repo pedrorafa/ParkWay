@@ -67,9 +67,9 @@ public class EditClientesCtrl {
 		txtNome.setText(dados.getNome());
 		txtCpf.setDisable(true);
 		txtCpf.setText(dados.getCpf());
-		//txtCep.setText(dados.getEndereco().getCep());
-		//txtRua.setText(dados.getEndereco().getLogradouro());
-		//txtNumero.setText(dados.getEndereco().getNumero());
+		txtCep.setText(dados.getEndereco().getCep());
+		txtRua.setText(dados.getEndereco().getLogradouro());
+		txtNumero.setText(dados.getEndereco().getNumero());
 		//cbCidade.getSelectionModel().select(dados.getEndereco().getCidade());
 		//cbEstado.getSelectionModel().select(dados.getEndereco().getEstado());
 		

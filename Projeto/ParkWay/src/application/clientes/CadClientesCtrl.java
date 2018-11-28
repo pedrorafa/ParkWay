@@ -247,7 +247,7 @@ public class CadClientesCtrl implements Initializable {
 
 		colEdit.setCellFactory(cellFactoryEdit);
 		colDelete.setCellFactory(cellFactoryDelete);
-		tabela.getColumns().addAll(colNome, colCpf,colContato, colEdit, colDelete);
+		tabela.getColumns().addAll(colNome, colCpf,/*colContato,*/ colEdit, colDelete);
 
 		data = FXCollections.observableArrayList();
 		tabela.setItems(data);

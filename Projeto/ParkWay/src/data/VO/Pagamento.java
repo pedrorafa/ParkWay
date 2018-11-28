@@ -1,6 +1,6 @@
 package data.VO;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Pagamento {
 	String IdVaga;
@@ -8,7 +8,14 @@ public class Pagamento {
 	Date Data;
 	int IdFormaPagamento;
 	double Valor;
+	String NumComprovante;
 	
+	public String getNumComprovante() {
+		return NumComprovante;
+	}
+	public void setNumComprovante(String numComprovante) {
+		NumComprovante = numComprovante;
+	}
 	public String getIdVaga() {
 		return IdVaga;
 	}

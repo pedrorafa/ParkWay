@@ -9,6 +9,11 @@ public class Vaga {
 	String Tamanho;
 	int PosX, PosY, PosZ;
 	
+	public Vaga() {
+		Numero = "";
+		Tamanho = "";
+	}
+	
 	public int getPosX() {
 		return PosX;
 	}

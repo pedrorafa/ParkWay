@@ -1,10 +1,11 @@
-/.classpath
 /application/
+/itextpdf-5.4.0.jar
 /mssql-jdbc-7.0.0.jre8.jar
-/reports/
+/.classpath
 /.project
 /.settings/
 /build.fxbuild
 /controllers/
 /data/
+/reports/
 /sql/

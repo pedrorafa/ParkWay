@@ -180,7 +180,7 @@ public class CadHistVagasCtrl implements Initializable {
 		colSituacao = new TableColumn<HistVaga, Boolean>("IsActive");
 
 		colNome.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("Cliente"));
-		colVeiculo.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("Veiculo"));
+		colVeiculo.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("IdVeiculo"));
 		colNumero.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("IdVaga"));
 		colDataPagamento.setCellValueFactory(new PropertyValueFactory<HistVaga, String>("DataPagamento"));
 

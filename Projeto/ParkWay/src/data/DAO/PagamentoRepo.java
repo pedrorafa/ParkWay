@@ -1,6 +1,7 @@
 package data.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,13 +23,15 @@ public class PagamentoRepo {
 		try {
 
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("exec sp_tbPagamento_I ?,?,?,?,?");
+					.prepareStatement("exec sp_tbPagamento_I ?,?,?,?,?,?");
 
 			preparedStatement.setString(1, p.getIdVeiculo());
 			preparedStatement.setString(2, p.getIdVaga());
-			preparedStatement.setDate(3, p.getData());
+			Date date = new Date(0);
+			preparedStatement.setDate(3, date);
 			preparedStatement.setInt(4, p.getIdFormaPagamento());
 			preparedStatement.setDouble(5, p.getValor());
+			preparedStatement.setString(6, p.getNumComprovante());
 
 			preparedStatement.execute();
 
@@ -46,7 +49,9 @@ public class PagamentoRepo {
 
 			preparedStatement.setString(1, p.getIdVeiculo());
 			preparedStatement.setString(2, p.getIdVaga());
-			preparedStatement.setDate(3, p.getData());
+			Date date = new Date(0);
+			date.from(p.getData().toInstant());
+			preparedStatement.setDate(3, date);
 			preparedStatement.setInt(4, p.getIdFormaPagamento());
 			preparedStatement.setDouble(5, p.getValor());
 
@@ -65,8 +70,10 @@ public class PagamentoRepo {
 							+ "WHERE DATA = ? AND IdVaga = ? AND IdVeiculo = ?");
 
 			preparedStatement.setString(1, p.getIdVaga());
-			preparedStatement.setString(2, p.getIdVeiculo());
-			preparedStatement.setDate(3, p.getData());
+			preparedStatement.setString(2, p.getIdVeiculo());			
+			Date date = new Date(0);
+			date.from(p.getData().toInstant());
+			preparedStatement.setDate(3, date);
 
 			preparedStatement.execute();
 
@@ -94,6 +101,7 @@ public class PagamentoRepo {
 				item.setIdVaga(rs.getString("numero"));
 				item.setIdVeiculo(rs.getString("placa"));
 				item.setData(rs.getDate("data"));
+				item.setNumComprovante(rs.getString("numeroRecibo"));
 			}
 
 		} catch (Exception e) {

@@ -127,15 +127,15 @@ public class ClienteRepo {
 	}
 
 	public ArrayList<Cliente> list(Cliente p) throws SQLException {
-		PreparedStatement stmt = connection.prepareStatement("select c.* from tbCliente c "
-				+ "inner join tbEndereco e on c.cpf = e.cpf " + "where (c.cpf LIKE ?) AND (c.nome LIKE ?) AND "
-				+ "(e.cep LIKE ?) AND (e.logradouro like ?) AND (e.numero LIKE ?)");
+		PreparedStatement stmt = connection.prepareStatement("select c.* from tbCliente c "+ "where (c.cpf LIKE ?) AND (c.nome LIKE ?)");
+				/*+ "inner join tbEndereco e on c.cpf = e.cpf "*/
+				/*+ "(e.cep LIKE ?) AND (e.logradouro like ?) AND (e.numero LIKE ?)")*/;
 
 		stmt.setString(1, "%" + p.getCpf() + "%");
 		stmt.setString(2, "%" + p.getNome() + "%");
-		stmt.setString(3, "%" + p.getEndereco().getCep() + "%");
-		stmt.setString(4, "%" + p.getEndereco().getLogradouro() + "%");
-		stmt.setString(5, "%" + p.getEndereco().getNumero() + "%");
+		//stmt.setString(3, "%" + p.getEndereco().getCep() + "%");
+		//stmt.setString(4, "%" + p.getEndereco().getLogradouro() + "%");
+		//stmt.setString(5, "%" + p.getEndereco().getNumero() + "%");
 
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
@@ -146,7 +146,7 @@ public class ClienteRepo {
 				Cliente item = new Cliente();
 				item.setCpf(rs.getString("cpf"));
 				item.setNome(rs.getString("nome"));
-				item.setEmail(rs.getString("contato"));
+				//item.setEmail(rs.getString("contato"));
 
 				list.add(item);
 			}
