@@ -91,7 +91,7 @@ public class ClienteRepo {
 
 	public Cliente get(Cliente p) throws SQLException {
 
-		PreparedStatement stmt = connection.prepareStatement("select * from TBCLIENTE " + "WHERE CPF = ?");
+		PreparedStatement stmt = connection.prepareStatement("select c.*, e.* from TBCLIENTE c inner join tbEndereco e on c.cpf = e.cpf " + "WHERE c.cpf = ?");
 
 		stmt.setString(1, p.getCpf());
 
@@ -105,6 +105,14 @@ public class ClienteRepo {
 				item = new Cliente();
 				item.setCpf(rs.getString("cpf"));
 				item.setNome(rs.getString("nome"));
+				item.setEmail(rs.getString("contato"));
+				
+				Endereco e = new Endereco();
+				e.setCep(rs.getString("cep"));
+				e.setLogradouro(rs.getString("logradouro"));
+				e.setNumero(rs.getString("numero"));
+				
+				item.setEndereco(e);
 			}
 
 		} catch (Exception e) {
@@ -127,15 +135,16 @@ public class ClienteRepo {
 	}
 
 	public ArrayList<Cliente> list(Cliente p) throws SQLException {
-		PreparedStatement stmt = connection.prepareStatement("select c.* from tbCliente c "+ "where (c.cpf LIKE ?) AND (c.nome LIKE ?)");
-				/*+ "inner join tbEndereco e on c.cpf = e.cpf "*/
-				/*+ "(e.cep LIKE ?) AND (e.logradouro like ?) AND (e.numero LIKE ?)")*/;
+		PreparedStatement stmt = connection.prepareStatement("select c.*, e.* from tbCliente c "
+				+ " inner join tbEndereco e on c.cpf = e.cpf "
+				+ " where (c.cpf LIKE ?) AND (c.nome LIKE ?) AND"
+				+ " (e.cep LIKE ?) AND (e.logradouro like ?) AND (e.numero LIKE ?)");
 
 		stmt.setString(1, "%" + p.getCpf() + "%");
 		stmt.setString(2, "%" + p.getNome() + "%");
-		//stmt.setString(3, "%" + p.getEndereco().getCep() + "%");
-		//stmt.setString(4, "%" + p.getEndereco().getLogradouro() + "%");
-		//stmt.setString(5, "%" + p.getEndereco().getNumero() + "%");
+		stmt.setString(3, "%" + p.getEndereco().getCep() + "%");
+		stmt.setString(4, "%" + p.getEndereco().getLogradouro() + "%");
+		stmt.setString(5, "%" + p.getEndereco().getNumero() + "%");
 
 		ResultSet rs = (ResultSet) stmt.executeQuery();
 
@@ -146,8 +155,14 @@ public class ClienteRepo {
 				Cliente item = new Cliente();
 				item.setCpf(rs.getString("cpf"));
 				item.setNome(rs.getString("nome"));
-				//item.setEmail(rs.getString("contato"));
-
+				item.setEmail(rs.getString("contato"));
+				
+				Endereco e = new Endereco();
+				e.setCep(rs.getString("cep"));
+				e.setLogradouro(rs.getString("logradouro"));
+				e.setNumero(rs.getString("numero"));
+				
+				item.setEndereco(e);
 				list.add(item);
 			}
 

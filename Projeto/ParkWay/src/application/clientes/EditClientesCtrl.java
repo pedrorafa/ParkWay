@@ -67,6 +67,7 @@ public class EditClientesCtrl {
 		txtNome.setText(dados.getNome());
 		txtCpf.setDisable(true);
 		txtCpf.setText(dados.getCpf());
+		txtEmail.setText(dados.getEmail());
 		txtCep.setText(dados.getEndereco().getCep());
 		txtRua.setText(dados.getEndereco().getLogradouro());
 		txtNumero.setText(dados.getEndereco().getNumero());

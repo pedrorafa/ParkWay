@@ -173,10 +173,12 @@ public class CadClientesCtrl implements Initializable {
 		colNome = new TableColumn<Cliente, String>("Nome");
 		colCpf = new TableColumn<Cliente, String>("Cpf");
 		colContato = new TableColumn<Cliente, String>("Contato");
+		colRua = new TableColumn<Cliente, String>("Endereco");
 
 		colNome.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Nome"));
 		colCpf.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Cpf"));
 		colContato.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Email"));
+		colContato.setCellValueFactory(new PropertyValueFactory<Cliente, String>("Endereco"));
 
 		colEdit = new TableColumn("Editar");
 		Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>> cellFactoryEdit = new Callback<TableColumn<Cliente, Void>, TableCell<Cliente, Void>>() {
@@ -247,7 +249,7 @@ public class CadClientesCtrl implements Initializable {
 
 		colEdit.setCellFactory(cellFactoryEdit);
 		colDelete.setCellFactory(cellFactoryDelete);
-		tabela.getColumns().addAll(colNome, colCpf,/*colContato,*/ colEdit, colDelete);
+		tabela.getColumns().addAll(colNome, colCpf,/*colContato,colRua,*/ colEdit, colDelete);
 
 		data = FXCollections.observableArrayList();
 		tabela.setItems(data);

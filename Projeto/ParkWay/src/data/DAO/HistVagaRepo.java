@@ -29,6 +29,7 @@ public class HistVagaRepo {
 			preparedStatement.setString(1, p.getIdVeiculo());
 			preparedStatement.setString(2, p.getIdVaga());
 			Date date = new Date(0);
+			//date = date.valueOf(p.getDataPagamento().toString());
 			preparedStatement.setDate(3, date);
 			preparedStatement.setBoolean(4, p.getIsActive());
 
